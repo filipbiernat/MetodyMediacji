@@ -339,11 +339,11 @@ Najważniejszą metodą mediacji wiedzy w niniejszej pracy jest pytanie w prost 
 
 Samo odpytywanie realizowane jest poprzez uruchomienie aktywności Question\_Emoji. Na widok aktywności składa się 6 przycisków - każdy z nich zrealizowany poprzez połączenie emotikony (grafiki dostarczanej na wolnej licencji przez Google) oraz podpisu. Użytkownik może przekazać, że jest szczęśliwy, podekscytowany, rozczulony, przestraszony, zdenerwowany lub smutny.
 
-Klasa Question\_Emoji dziedziczy po SlidableActivity -- funkcjonalności opartej na wolnej licencji Apache i udostępnionej społeczności przez stronę \url{https://github.com/r0adkll/Slidr}. Szybkie przesunięcie palcem w bok po ekranie pozwala odrzucić pytanie o emocje. W ten sposób można przekazać sygnał, że w danej chwili zapytanie jest niepożądane -- jest to tak zwana opcja "Nie teraz". Może się okazać szczególnie przydatna w przyszłości, jeżeli w grę wejdzie samodzielne odkrywanie reguł.
+Klasa Question\_Emoji dziedziczy po SlidableActivity -- funkcjonalności opartej na wolnej licencji Apache i udostępnionej społeczności przez stronę \url{https://github.com/r0adkll/Slidr}. Szybkie przesunięcie palcem w bok po ekranie pozwala odrzucić pytanie o emocje. W ten sposób można przekazać sygnał, że w danej chwili zapytanie jest niepożądane -- jest to tak zwana opcja ''Nie teraz". Może się okazać szczególnie przydatna w przyszłości, jeżeli w grę wejdzie samodzielne odkrywanie reguł.
 
 Równocześnie z aktywnością uruchamia się zadanie asynchroniczne. W tle realizowane jest odliczanie 10 sekund. Jeżeli w tym czasie nie zostanie udzielona odpowiedź, aktywność znika po prostu z ekranu. Próba dialogu zostaje oczywiście odnotowana.
 
-Wybór opcji, czy to emocji, czy opcji "Nie Teraz", czy też wygaśnięcia timera jest przekazywany do ContentProvidera, a następnie zapisywany w bazie danych. Do Plugin Managera zostaje przesłana informacja, że zapytanie zostało zakończone.
+Wybór opcji, czy to emocji, czy opcji ''Nie Teraz", czy też wygaśnięcia timera jest przekazywany do ContentProvidera, a następnie zapisywany w bazie danych. Do Plugin Managera zostaje przesłana informacja, że zapytanie zostało zakończone.
 
 Dodatkową jawną metodą mediacji wiedzy jest pytanie o kolor. Bez zebrania dużej ilości danych ciężko przewidzieć jak odczytywać takie odpowiedzi. Odpowiedź z wykorzystaniem mapy kolorów można odnosić na przykład do niejawnej metody mediacji, jaką jest rozpoznanie emocji z wykorzystaniem kamery. Dopiero łącząc te wyniki, można wysnuć wnioski. Ta forma badania ma raczej format psychologiczny a nie inżynierski. 
 
@@ -351,19 +351,23 @@ Pytanie o kolor jest zrealizowane w postaci aktywności Question\_Color. Czołow
 
 Dodatkowo na ekranie pojawiają się dwa przyciski. Pierwszym jest przycisk zatwierdzenia koloru. Jeżeli popatrzylibyśmy na wcześniej omówioną aktywność, nie zastosowano tam takiego rozwiązania. Przy wyborze koloru jest po prostu wiele różnych możliwości i na przykład przesunięcie po mapie może być wygodniejsze dla użytkownika, niż pojedyncze kliknięcie. Przycisk Anuluj działa tak jak szybkie przesunięcie palcem w bok.
 
-Sama opcja przesunięcia ("Nie teraz") omówiona wcześniej w tej sekcji jest również dostępna w tej aktywności. Podobnie jak funkcjonalność, która po 10 sekundach powoduje zniknięcie aktywności i powrót do wcześniejszego stanu. Dodatkowo wprowadzono też zadanie asynchroniczne, które uruchamia licznik po wybraniu palcem jakiegoś koloru. Po trzech sekundach bezruchu aplikacja uznaje ten kolor za wybrany i zatwierdza w ten sam sposób, jakby kliknięto przycisk Wybierz.
+Sama opcja przesunięcia (''Nie teraz") omówiona wcześniej w tej sekcji jest również dostępna w tej aktywności. Podobnie jak funkcjonalność, która po 10 sekundach powoduje zniknięcie aktywności i powrót do wcześniejszego stanu. Dodatkowo wprowadzono też zadanie asynchroniczne, które uruchamia licznik po wybraniu palcem jakiegoś koloru. Po trzech sekundach bezruchu aplikacja uznaje ten kolor za wybrany i zatwierdza w ten sam sposób, jakby kliknięto przycisk Wybierz.
 
 Po zamknięciu aktywności trzy składowe RGB przekazywane są do ContentProvidera, a następnie trafiają do bazy danych SQLite. Podobnie jak wcześniej, do bazy trafia również informacja, czy pytanie zostało zignorowane lub odrzucone.
 
 
 \subsection{Pakiet \textit{photo}}
 
-TODO
-EmotionRecognitionService
-EmotionRecognitionPhotoProcessor
-EmotionRecognitionTask
-Android Face Detection
-Face API
+Kiedy silnik wnioskujący podejmie decyzję, że przyszedł czas na wykonanie fotografii (lub czynność ta zostanie wymuszona z poziomu ustawień) PluginManager usuchamia usługę EmotionRecognitionService odpowiedzialną za rozpoznawianie emocji. Usługa zostaje uruchomiona w tle, w osobnym wątku tak, aby nie wpływać w żaden sposób na działanie aplikacji. Celem usługi jest wykonanie zdjęcia, a następnie nawiązanie łączności z zewnętrznym API, które zwróci wynik w postaci szeregu współczynników. Jeżeli na którymkolwiek etapie rozpoznawanie się nie powiedzie, cała procedura zostaje uruchomiona ponownie po określonej liczbie sekund. I tak czynność powtarzana jest określoną ilość razy.
 
+Najważniejszym zadaniem EmotionRecognitionService jest konfiguracja \textit{camera2 API} i wykonanie zdjęcia "w tle", czyli bez ingerencji w to, co robi użytkownik na ekranie telefonu. Wykonanie takiego zdjęcia znacząco różni się od tego co znamy z aplikacji Aparat. Samo wywołanie czynności "zrób zdjęcie" nie przyniesie nam pożądanego efektu. Konieczne jest przeprowadzenie całego procesu wyboru, uruchomienia i konfiguracji urządzenia. 
+
+Po skonfigurowaniu kamery uruchamiany jest w tle obiekt słuchacza EmotionRecognitionPhotoProcessor, który implementuje funkcjonalność ImageReader.OnImageAvailableListener dostarczaną przez jeden z pakietów systemu android. Zasada działania słuchacza sprowadza się do tego, że w momencie, gdy kamera aparatu wykona zdjęcie, zostanie wywołana metoda onImageAvailable(). Implementacja samej metody sprowadza się do przetwarzania wykonanego zdjęcia do odpowiednich formatów tak, aby mogło być wykorzystane do dalszych operacji.
+
+W pierwszej kolejności wywoływana jest metoda detect() na obiekcie FaceDetector z pakietu \textit{com.google.android.gms.vision.face} dostarczanego przez system Android. Takie wykrycie twarzy dokonuje się lokalnie na naszym urządzeniu. Na tym etapie nie jest potrzebne wysłanie grafiki i przetworzenie jej zdalnie na zewnętrzym serwerze. Dopiero kiedy mamy pewność, że obraz jaki wykonaliśmy zawiera całą twarz pojedynczej osoby, egzekucja przechodzi do wykrywania emocji z użyciem zewnętrznego API.
+
+Firma Microsoft w ramach Usług Kognitywnych platformy Azure dostarcza usługę Rozpoznawanie twarzy. Pozwala ona zewnętrzym aplikacjom na weryfikacja twarzy, wykrywanie twarzy i rozpoznawanie emocji. Bezpłatny pakiet limituje funkcjonalność do 20 zapytań na minutę i 30 tysięcy zapytań miesięcznie. Po przekroczeniu tego limitu dalsze korzystanie z API staje się niemożliwe. Jak na potrzeby niniejszej pracy pakiet bezpłatny jest wystarczającym rozwiązaniem. Firma Microsoft definiuje funkcjonalność rozpoznawania emocji w następujący sposób: ''Interfejs API rozpoznawania twarzy zawiera teraz funkcje rozpoznawania emocji, które zwracają poziom pewności dla zestawu emocji, takich jak gniew, pogarda, odraza, strach, zadowolenie, smutek i zaskoczenie, oraz braku emocji w przypadku każdej twarzy widocznej na obrazie. Te emocje są rozumiane jako międzykulturowe i komunikowane przez określoną uniwersalną mimikę twarzy''\cite{azure}.
+
+W celu komunikacji z zewnętrzym serwerem zaimplementowano specjalne zadanie asynchroniczne EmotionRecognitionTask. Dostarczany przez firmę Microsoft obiekt FaceServiceClient komunikuje się z chmurą z wykorzystaniem REST API. Aby ograniczyć transfer danych, skonfigurowany jest jedynie do przesyłania informacji o samych emocjach użytkownika. Po odebraniu rezultatów, wyniki przesyłane są z powrotem do EmotionRecognitionPhotoProcessor i wpisywane do bazy danych. Każda z emocji ma w bazie danych odpowiadającą sobie kolumnę w typie zmiennoprzecinkowym. Z jednego obrazu może być wykryte kilka emocji, ale współczynniki zwracane przez \textit{MS Face API} sumują się zawsze do jedności.
 
 
