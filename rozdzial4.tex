@@ -14,8 +14,8 @@ Implementacja pluginu została zrealizowana w języku Java, rekomendowanym przez
 
 %---------------------------------------------------------------------------
 
-\section{Implementacja modelu HMR}
-\label{sec:implementacjaModeluHmr}
+\section{Model HMR}
+\label{sec:modelHmr2}
 
 \subsection{Konstruowanie modelu wnioskującego}
 
@@ -302,10 +302,54 @@ Lista nowo-dodanych wywołań ma się następująco:
 
 \subsection{Plugin \textit{AWARE}}
 
+Twórcy frameworka \textit{AWARE} zalecają, aby jednym z głównych zadań klasy Plugin w każdym z rozszerzeń, była poprawna inicjalizacja wszystkich zależności\cite{AwareFramework}. W \textit{HowAreYou} większość odpowiedziałności tej klasy to właśnie poprawne uruchomienie i skonfigurowanie poszczególnych elementów.
+
+\begin{enumerate}
+	\item W celu zapewnienia bezpieczeństwa system Android wymaga od użytkownika przynajmniej jednorazowego wyrażenia zgody na dostęp do wrażliwych części systemu takich jak dostęp do: pamięci wewnętrznej, kontaktów, czy Internetu. Na twórcach aplikacji spoczywa odpowiedzialność o upewnienie się, że użytkownik wyraził odpowiednie zgody. Właśnie w klasie plugin realizowane jest takie zapytanie o zgody. Zazwyczaj ma ono miejsce tylko przy pierwszym uruchomieniu. Przy uruchomieniu aplikacja sprawdza w systemie czy zgody zostały już wcześniej udzielone, jeżeli nie -- formułuje zapytanie.
+	
+	\item W przypadku jeżeli zostały wyrażone zgody wymagane przez funkcjonalności pluginu i poszczególnych sensorów, egzekucja może przejść o krok dalej. Początkowo sprawdzany są bazy danych. Jeżeli ich brak - odpowiednie tablice są inicjalizowane. 
+	
+	\item Następnie następuje stworzenie i rejestracja tzw. \textit{observers} z pakietu \textit{agh.heart}. Przypomnijmy, że dzięki tym klasom stale nasłuchującym wiadomości broadcastowych, silnik wnioskujący jest w stanie szybko reagować na zmieniające się otoczenie. 
+	
+	\item W dalszej części inicjalizowane są ustawienia: część zawsze (na przykład ustawienia ogólne dotyczące choćby parametrów synchronizacji danych, częstotiwości czyszczenia danych, czy możliwości wykorzystywania transferu danych), a część tylko przy pierwszym uruchomieniu.
+	
+	\item Kolejną czynnością jest sprawdzenie czy użytkownik jest już uczestnikiem \textit{Study}. Jest to ważne zwłaszcza przy pierwszym uruchomieniu lub przy jednym z kolejnych, jeżeli przy wcześniejszych nie udało się nawiązać połączenia internetowego. \textit{Study} (ang. badanie) jest dostarczanym przez framework \textit{AWARE} zestawem narzędzi umożliwiającym przeprowadzenie badania. Zespół badawczy może korzystać z bezpłatnych przestrzeni baz danych, z możliwości wizualizacji danych oraz z możliwości komunikowania się z uczestnikami badania. W przypadku niniejszej pracy, dołączenie do study jest realizowane automatycznie przez plugin. Adres badania to: \url{https://api.awareframework.com/index.php/webservice/index/2415/4a13qF3BHs8y}. Nie są gromadzone dane wrażliwe jak na przykład fotografie, a jedynie "suche" liczby w tabelach dotyczących emocji, koloru, czy fotografii.
+	
+	\item Klasa Plugin podczas uruchamiania aplikacji inicjalizuje też niezależną instancję frameworka \textit{Aware}, która działa wewnątrz pluginu i niektóre jej sensory.
+	
+	\item Ostatnim etapem jest uruchomienie ikony powiadomienia o wykorzystaniu kamery telefonu, jeżeli taka opcja została wybrana przez użytkownika w menu ustawień.
+\end{enumerate}
+
+Kolejną ważną klasą w pakiecie \textit{com.aware.plugin.howareyou} jest PluginManager. Jest BroadcastReceiverem, gdzie spotykają się wszystkie najważniejsze wiadomości. Reaguje na decyzje silnika wnioskującego \textit{HeaRT-AWARE} po wywołaniu akcji, a także na wymuszenie wywołania akcji (rozpoczęcie procedury skanowania nastroju z użyciem fotografii, pytanie o kolory lub pytanie o emocje) z menu ustawień. PluginManager odpowiada również za stworzenie logu ostatnich akcji, który może zostać wyświetlony użytkownikowi po wybraniu odpowiedniej opcji w aktywności ustawień. Ponadto klasa zapisuje ostatnio wykonaną akcję i przekazuje ją dalej do mechanizmu wnioskującego.
+
+Ostanim z elementów, na które warto zwrócić uwagę jest ContentProvider. Jego odpowiedzialnością jest komunikacja z bazą danych SQLite. ContentProvider inicjalizuje w pamięci wewnętrznej telefonu plik "plugin\_howareyou.db", a następnie wypełnia go trzeba tabelami: "photo\_data", "color\_data" i "emotion\_data".
+
+\begin{enumerate}
+	\item Pierwsza z tablic została stworzona z myślą o przechowywaniu wyników działania usługi rozpoznawania emocji z wykorzystaniem telefonu komórkowego. Poza standardowymi kolumnami jakimi są ID oraz znak czasu (ang. \textit{timestamp}) mamy tutaj do czynienia z: "double\_anger", "double\_contempt", "double\_disgust", "double\_fear", "double\_happiness", "double\_neutral", "double\_sadness", "double\_surprise". Nazwy i charakter tych tablic są ściśle powiązane z właściwościami \textit{MS Face APi}, które zwraca rezultat rozpoznawania twarzy właśnie jako sumę siedmiu emocji: złości, pogardy, niesmaku, strachu, szczęścia, obojętności, smutku i zaskoczenia. Poszczególne współczynniki zawsze sumują się do jedności, stąd zdecydowano się na zmiennoprzecinkowy typ reprezentacji danych.
+	
+	\item Zadaniem drugiej tablicy jest przechowywanie informacji o wynikach zapytań użytkownika z wykorzystaniem mapy kolorów. Po wybraniu koloru, jego wartość zostaje rozbita na trzy składowe i wpisana do kolumn ''color\_red", ''color\_green'' i ''color\_blue'' reprezentujących składowe RGB. Dodatkowa kolumna ''color\_dropped'' zapisuje informację o tym, czy udało się zrealizować pytanie o kolor. Po wyświetleniu się pytania użytkownik ma zazwyczaj kilka sekund na odpowiedź. Jeżeli pytanie pozostaje bez odpowiedzi, zostaje to również odnotowanie. Ponadto użytkownik ma do dyspozycji opcję "Nie teraz". Przesuwając szybko palcem w bok może odrzucić pytanie, jeżeli jest na przykład irytujące. To również zostaje odnotowane. Kolumny tabeli zawierają tylko liczby całkowite.
+	
+	\item Ostatnia z tablic przechowuje informacje o wynikach zapytań użytkownika z wykorzystaniem emotikon. Wybierając emotikony zdecydowano się na 6 podstawowych emocji: ''emotion\_happy'', ''emotion\_excited'', ''emotion\_tender'', ''emotion\_scared'', ''emotion\_angry'', ''emotion\_sad'' opisujących: szczęście, podekscytowanie, rozczulenie, strach, gniew i smutek. Podobnie jak powyżej, wprowadzono również kolumnę dropped. Kolumny tabeli zawierają tylko liczby całkowite.
+\end{enumerate}
+
 
 \subsection{Dialog z użytkownikiem}
 
+TODO
+Question\_Emoji
+Question\_Color
+https://github.com/QuadFlask/colorpicker
+SlidableActivity https://github.com/r0adkll/Slidr
+
+
 \subsection{Pakiet \textit{photo}}
 
+TODO
+EmotionRecognitionService
+EmotionRecognitionPhotoProcessor
+EmotionRecognitionTask
+Android Face Detection
+Face API
 
-\subsection{Menu ustawień}
+
+
