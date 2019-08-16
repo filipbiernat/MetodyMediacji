@@ -24,8 +24,36 @@ Powyższy schemat prezentuje najważniejsze składowe rozwiązania i zależnośc
 \section{Silnik wnioskujący}
 \label{sec:silnikWnioskujacy}
 
-TODO: heartdroid, hekate
-źródło: heartdroid
+\textit{HeaRTDroid} jest opartym na regułach silnikiem wnioskującym stworzonym z myślą zarówno o urządzeniach mobilnych jak i rozwiązaniach desktopowych. Bazuje on na silniku wnioskującym HeaRT i jest rozpowszechniany na licencji GNU GPL. Najważniejszymi cechami tego rozwiązania są\cite{heartdroid}:
+
+\begin{itemize}
+	\item Wsparcie dla reprezentacji reguł \textit{XTT2} i dla języka HMR+, który je tekstowo reprezentuje.
+	
+	\item Implementacja w czystej Javie, co pozwala na integrację z dowolnym innym kodem Javy, włączając to aplikacje mobilne dla systemu Android.
+	
+	\item Integracja z frameworkiem \textit{AWARE} zrealizowana w formie rozszerzenia \textit{HeaRTDroid Plug-In}.
+	
+	\item Mechanizm tzw. \textit{callbacks} oparty na refleksji w języku Java, który pozwala na łatwą integrację z innymi systemami.
+	
+	\item Mechanizm zarządzania niepewnością oparty na algebrze współczynnikóW pewności i podejściu probabilistycznym.
+	
+	\item Różnorodne tryby wnioskowania i możliwość uruchomienia wnioskowania w czasie rzeczywistym.
+	
+	\item Oraz interaktywna powłoka linii komend \textit{HaQuNa}\cite{heartdroid}.
+\end{itemize}
+
+Na potrzeby pluginu \textit{HowAreYou} było potrzebne rozwiązanie, które pozwoli na: 
+\begin{itemize}
+	\item swobodne zmiany modelu wnioskowania,
+	
+	\item możliwość uruchamiania silnika bezpośrednio na urządzeniu mobilnym z systemem operacyjnym Android,
+	
+	\item łatwą współpracę z frameworkiem \textit{AWARE}, służącym jako tzw. \textit{middleware} do akwizycji danych,
+	
+	\item możliwość uruchamiania wnioskowania bezpośrednio, gdy zmieni się jeden z zewnętrznych czynników.
+\end{itemize}
+
+Stąd silnik \textit{HeaRTDroid} stał się oczywistym rozwiązaniem, jako że spełnia wszystkie powyższe założenia.
 
 %---------------------------------------------------------------------------
 
@@ -40,7 +68,24 @@ Plugin \textit{HowAreYou} został stworzony w ten sposób, że wszystkie reguły
 \section{Pakiet \textit{HeaRT-AWARE}}
 \label{sec:pakietHeartAware}
 
-TODO:AIWIKI %https://ai.ia.agh.edu.pl/wiki/pl:dydaktyka:wshop:prv:2016:hrtd_plugin:start#przykladowy_scenariusz_w_projekcie
+Kolejną z kwestii, jakie trzeba było rozwiązać na etapie projektowania rozwiązania była kwestia zintegrowania ze sobą frameworka \textit{AWARE} i silnika wnioskującego \textit{HeaRTDroid}. Zdecydowano się tutaj skorzystać z istniejącego rozwiązania, jakim jest plugin \textit{HeaRT-AWARE}. Aplikacja była realizowana przez Marka Wawrzosa na Katedrze Informatyki Stosowanej, a kod źródłowy został udostępniony studentom w ramach AI WIKI\cite{heartaware}.
+
+Struktura projektu opiera się tutaj na dwóch pakietach: \textit{agh.heart} -- realizującym interackcje pluginu z silnikiem wnioskującym i \textit{com.aware.plugin.template} -- realizującym standardową strukturę i standardowe zadania rozszerzenia \textit{AWARE}. W \textit{HowAreYou} zdecydowano się zrezygnować z tej drugiej części, jako, że dysponowano już innym pakietem \textit{com.aware.plugin.howareyou}. Za to kluczową rolę w realizacji aplikacji odegrał pakiet pierwszy, stanowiąc trzon proxy pomiędzy \textit{HeaRTDroid}em a \textit{AWARE}.
+
+Na pakiet \textit{agh.heart} składają się następujące elementy:
+\begin{itemize}
+	\item \textit{actions} -- zestaw akcji, które mogą być podjęte (uruchomione) przez silnik regułowy (mogą być wynikiem wnioskowania).
+	
+	\item \textit{callbacks} -- zestaw wywołań, które pozwalają mechanizmom wnioskującym na dostęp parametrów zewnętrzym na przykład poprzez dostęp do baz danych pluginu, baz danych sensorów, czy informacji systemowych udostępnianych przez pakiety systemu Android.
+	
+	\item \textit{model} -- zestaw narzędzi pozwalających na wczytanie i obsługę modelu HMR. W pierwotnym rozwiązaniu model wczytywany był ze statycznego pola typu String.
+	
+	\item \textit{observers} -- zestaw tzw. \textit{BroadcastReceivers}, które odpowiadają za uruchomienie wnioskowania w chwili, gdy zostanie spełniony konkretny warunek.
+	
+	\item oraz klasa \textit{HeaRTService.java} odpowiedzialna za planowanie wnioskowania. Dzięki temu rozwiązaniu poszczególne zadania wnioskujące nie są uruchamiane równocześnie\cite{heartaware}.
+\end{itemize}
+
+Powyższe rozwiązanie zostało w ramach niniejszej pracy znacznie rozbudowane przede wszystkim poprzez zaimplementowanie dodatkowych \textit{actions}, \textit{callbacks} i \textit{observers}.
 
 %---------------------------------------------------------------------------
 
