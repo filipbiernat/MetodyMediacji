@@ -1,6 +1,16 @@
 \chapter{Implementacja}
 \label{cha:implementacja}
 
+%---------------------------------------------------------------------------
+
+\section{Wprowadzenie do implementacji}
+\label{sec:wprowadzenieDoImplementacji}
+
+Telefon komórkowy jest urządzeniem, które na co dzień mamy przy sobie. Z tego względu już na najwcześniejszym etapie projektowania rozwiązania wybór padł właśnie na telefon. Jeżeli chodzi o systemy operacyjne, zdecydowano się na system Android. Jego główną zaletą jest fakt, że pozwala deweloperom aplikacji na szeroki dostęp do opcji systemowych, sensorów, itp. Jest to również najpopularniejszy system operacyjny dla urządzeń mobilnych.
+
+Wraz z potrzebą akwizycji dużej ilości różnego rodzaju danych z sensorów urządzenia mobilnego pojawiła się konieczność realizacji tej akwizycji. Zdecydowano się pominąć własną implementację tego mechanizmu wykorzystując szeroki wachlarz możliwości jaki daje jeden z otwartoźródłowych frameworków. Ostatecznie wybór padł na framework \textit{AWARE}. Rozwiązanie realizujące różne metody mediacji wiedzy zostało więc stworzone jako plugin \textit{HowAreYou} - nieoficjalne rozszerzenie \textit{AWARE}.
+
+Implementacja pluginu została zrealizowana w języku Java, rekomendowanym przez twórców frameworka \textit{AWARE}\cite{AwareFramework}. Najstarszą wersją systemu operacyjnego Android, jaką wspiera \textit{HowAreYOu} jest Lollipop (minimalne SKD zostało ustawione na 22). Środowiskiem wykorzystanym w celu realizacji zadania było Android Studio. Do kontroli wersji wykorzystano narzędzie git, do przechowywania kodu źródłowego -- platformę github: \url{https://github.com/filipbiernat/HowAreYou_plugin}.
 
 %---------------------------------------------------------------------------
 
@@ -188,10 +198,114 @@ Tabela zwraca prawdę, jeżeli najnowsze zdjęcie w bazie danych uznaje się za 
 
 \subsubsection{Obserwowanie reguł wnioskujących}
 
-Podobnie jak w przypadku zaawansowanego modelu, działanie systemu wnioskującego wykorzystującego uproszczony model można obserwować na bieżąco z wykorzystaniem trybu debugowego. Tutaj jednak log z wnioskowania jest znacznie krótszy - do tego stopnia, że obejmuje tylko jedną tabelę i tylko dwie reguły.
-
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.15]{rozdzial4/HMR_screenshots_B.png}
 	\caption{Tryb debugowy: widok z loga z wnioskowania HMR z modelem uproszczonym.}
 \end{figure}
+
+Podobnie jak w przypadku zaawansowanego modelu, działanie systemu wnioskującego wykorzystującego uproszczony model można obserwować na bieżąco z wykorzystaniem trybu debugowego. Tutaj jednak log z wnioskowania jest znacznie krótszy - do tego stopnia, że obejmuje tylko jedną tabelę i tylko dwie reguły.
+
+%---------------------------------------------------------------------------
+
+\section{Pakiet \textit{HeaRT-AWARE}}
+\label{sec:pakietHeartAware2}
+
+Jak już wspomniano w poprzednim rozdziale, zadaniem pakietu \textit{agh.heart} było zintegrowanie ze sobą frameworka \textit{AWARE} i silnika wnioskującego \textit{HeaRTDroid}. Zostało ono zrealizowane przez deweloperów pakietu w formie: \textit{actions}, \textit{observers} i \textit{callbacks}\cite{heartaware}.
+
+\subsection{Pakiet \textit{agh.heart.actions}}
+
+W pluginie \textit{HowAreYou} zrezygnowano z dostępnych początkowo w pakiecie akcji \textit{DisableBlueTooth} (ang. wyłącz Bluetooth) i \textit{EnableBlueTooth} (ang. włącz Bluetooth). Przy realizacji aplikacji monitorującej nastrój użytkownika nie było potrzeby wykorzystywania tego typu akcji. W zamian zaimplementowano akcje związane ze specyfiką zadania:
+
+\begin{itemize}
+	\item \textit{HowAreYou\_StartPhotoEmotionRecognition} -- uruchom usługę odpowiedzialną za rozpoznawanie emocji użytkownika na podstawie fotografii.
+	\item \textit{HowAreYou\_StartQuestionEmoji} -- uruchom aktywność odpowiedzialną za zapytanie użytkownika o nastrój z wykorzystaniem widoku emotikon.
+	\item \textit{HowAreYou\_StartQuestionColor} -- uruchom aktywność odpowiedzialną za zapytanie użytkownika o nastrój z wykorzystaniem widoku kolorów.
+\end{itemize}
+
+Każda z powyższych akcji przesyła wiadomość broadcastową do PluginManagera w pakiecie \textit{com.aware.plugin.howareyou}. PluginManager uruchamia następnie zaplanowaną aktywność lub usługę. 
+
+Aby uprościć rozwiązanie, zaimplementowano również klasę bazową \textit{HowAreYou\_Action}, z której korzystają powyższe klasy. Dzięki takiemu rozwiązaniu, jeżeli w przyszłości pojawiłaby się potrzeba uwzględnienia w modelu nowej akcji dołączonej do PluginManagera, dołączenie jej do zbioru \textit{actions} powinno być bardzo proste.
+
+
+\subsection{Pakiet \textit{agh.heart.observers}}
+
+W swojej początkowej formie Pakiet \textit{HeaRT-AWARE} dostarczał użytkownikowi trzy różne klasy obserwatora: \textit{Accelerometer}, \textit{Location} i \textit{Screen}. 
+
+Na potrzeby niniejszej pracy zaimplementowano jeszcze jedną dodatkową klasę \textit{HowAreYou}. Pozwala ona silnikowi wnioskującemu reagować na sytuacje, kiedy użytkownik udzieli odpowiedzi na pytanie (lub odrzuci pytanie wybierając opcję \textit{Nie teraz}), czy też na sytuację, kiedy zostanie wykonana fotografia i zewnętrzne API zwróci wyniki rozpoznawania emocji. W tym przypadku silnik wnioskujący może na bieżąco reagować na te wyniki podejmując decyzję, czy na przykład zapytać dodatkowo o kolor (jeżeli wiemy, co obecnie czuje użytkownik) lub o emocje (jeżeli nie udało ich się rozpoznać automatycznie). 
+
+Nowa klasa ma postać \textit{BroadcastReceivera}, który reaguje na akcje:
+\begin{itemize}
+\item \textit{ACTION\_ON\_FINISHED\_QUESTION\_COLOR} -- zakończono zapytanie użytkownika o kolor,
+\item \textit{ACTION\_ON\_FINISHED\_QUESTION\_EMOJI} -- zakończono zapytanie użytkownika bezpośrednio o emocje,
+\item \textit{ACTION\_ON\_FINISHED\_PHOTO\_EMOTION\_RECOGNITION} -- zakończono (z powodzeniem lub nie) proces rozpoznawania emocji użytkownika z wykorzystaniem kamery telefonu.
+\end{itemize}
+
+W modelu HMR dostępnym w ramach \textit{HowAreYou} zrezygnowano z wykorzystywania \textit{observers}: \textit{Accelerometer} oraz \textit{Location}. Pozostałe dwa wystarczająco dobrze radzą sobie z uruchamianiem wnioskowania. Kluczowy jest tutaj obserwator ekranu, który daje znać, czy użytkownik korzysta z telefonu. Wspomaga go nowy obserwator z akcjami specyficznymi dla bieżącego rozszerzenia. 
+
+Jeżeli chodzi o dane z akcelerometru, kłopotliwe może okazać się ich przetwarzanie i filtrowanie -- mamy tutaj do czynienia z ogromną ilością "surowych" danych. W przypadku danych z lokalizacji, ciężko wyobrazić sobie dla nich zastosowanie jako dla czynnika uruchamiającego wnioskowanie w tym konkretnym przypadku. W innym przypadku wiązałoby się to pewnie ze stworzeniem złożonych map obszarów, gdzie po przekroczeniu pewnej granicy, wnioskowanie może zostać uruchomione. Nic nie stoi jednak na przeszkodzie, żeby w dalszych pracach nad \textit{HowAreYou} powrócić do obecnie pominiętych \textit{observers}.
+
+
+\subsection{Pakiet \textit{agh.heart.callbacks}}
+
+Ostatnim z klluczowych elementów przy wnioskowaniu są tzw. \textit{callbacks}, czyli wywołania, które pozwalają mechanizmom wnioskującym na dostęp parametrów zewnętrzych. Początkowo dysponowaliśmy trzema takimi wywołaniami -- dla żyroskopu (\textit{Gyroscope}), lokalizacji (\textit{Location}) i ekranu urządzenia (\textit{Screen}). Konieczne było jednak opracowanie kolejnych \textit{callbacks}. Im większa ich liczba -- tym dokładniejszy model HMR można skonstruować. 
+
+W pierwszej kolejności zaimplementowano nowe klasy generyczne upraszczające strukturę pakietu. Dzięki zastosowaniu takich ogólnych \textit{callbacks}, uzyskano znacznie łatwiejszą możliwość rozbudowy o kolejne czynniki zewnętrzne.
+\begin{itemize}
+	\item \textit{GenericDbCallback} -- klasa opakowuje wszystkie funkcjonalności, jakie potrzebne są do pozyskania odpowiednich informacji z bazy danych. Klasa dziedzicząca po \textit{GenericDbCallback} musi jedynie wyspecyfikować parametry dostępu do bazy danych SQLite takie jak URI i lista kolumn.
+	
+	\item \textit{Application\_Generic} -- wykorzystuje sensor \textit{AWARE} \textit{Applications\_Foreground}. Po pobraniu informacji z bazy danych sensora porównuje nazwę zdefiniowanego pakietu z zapisanym w podklasie pakietem konkretnej aplikacji. Zwraca 1, jeżeli aktualnie wykorzystywaną aplikacją jest ta zdefiniowana w podklasie, w przeciwnym przypadku zwraca 0.
+	
+	\item \textit{HowAreYou\_Generic} -- początkowo klasa została stworzona z myślą o wywołaniach charakterystycznych dla konkretnego pluginu. Z czasem znalazła zastosowanie również dla wykorzystywania tablic frameworka \textit{AWARE}. Cechą charakterystyczną jest dodatkowa kolumna "\textit{*\_timeout}". Dzięki niej silnik wnioskujący otrzymuje informację jak dawno miało miejsce wydarzenie, do którego się odwołuje. \textit{Timeout} mierzony jest jako różnica pomiędzy bieżącym czasem systemowym oraz czasem zdarzenia zapisanym w bazie danych (w kolumnie \textit{timestamp}) i jest wyrażony w minutach.
+\end{itemize}
+
+Lista nowo-dodanych wywołań ma się następująco: 
+
+\begin{itemize}
+	\item \textit{Application\_Facebook} -- informuje silnik czy aktualnie uruchomiona jest aplikacja \textit{Facebook}.
+	
+	\item \textit{Application\_GoogleMaps} -- informuje silnik czy aktualnie uruchomiona jest nawigacja.
+	
+	\item \textit{Application\_YouTube} -- informuje silnik czy użytkownik ogląda filmy w aplikacji \textit{YouTube}.
+	
+	\item \textit{Communication} -- informuje silnik czy obecnie trwa połączenie telefoniczne. Wywołanie nie wykorzystuje bazy danych, w zamian na obiekcie \textit{CommunicationObserver} uruchamiana jest metoda \textit{isCalling}. W ten sposób wykorzystany jest sensor \textit{Communication} frameworka \textit{AWARE}.
+	
+	\item \textit{HowAreYou\_Color} -- przekazuje do silnika składowe RGB ostatnio wybranego przez użytkownika koloru. Przesyła także informację, czy użytkownik nie odrzucił ostatniego zapytania.
+	
+	\item \textit{HowAreYou\_Emotion} -- przekazuje do silnika informacje: o ostatnio wybranej przez użytkownika emocji oraz czy użytkownik nie odrzucił ostatniego zapytania.
+	
+	\item \textit{HowAreYou\_IsMoving} -- informuje silnik czy urządzenie aktualnie jest w ruchu. Wykorzystywany jest tutaj sensor \textit{Significant} frameworka \textit{AWARE}.
+	
+	\item \textit{HowAreYou\_LatestAction} -- informuje silnik o ostatniej akcji, jaka została wywołana w PluginManagerze. Dzięki temu model HMR jest w stanie zareagować odpowiednio na konretną akcję, na przykład poprzez sprawdzenie wyników rozpoznawania zdjęć, czy zapytania użytkownika.
+	
+	\item \textit{HowAreYou\_Photo} -- przekazuje do silnika 8 współczynników emocji rozpoznanych przez \textit{MS Face API} (\textit{ANGER, CONTEMPT, DISGUST, FEAR, HAPPINESS, NEUTRAL, SADNESS, SURPRISE}).
+	
+	\item \textit{HowAreYou\_Settings} -- informuje silnik o trybie w jakim działa obecnie aplikacja. Model HMR musi mieć możliwość rozróżnienia trybu, aby podejmować odpowiednie decyzje, przykładowo nie zlecać wykonania fotografii, jeżeli użytkownik nie wyraża zgody na wykorzystywanie kamery. Ustawienia, do jakich dostęp ma model to:
+	\begin{itemize}
+		\item \textit{SETTINGS\_PLUGIN\_HOWAREYOU} -- informacja czy skanowanie nastroju jest aktywne, 		 
+		
+		\item \textit{SETTINGS\_PHOTO} -- informacja czy użytkownik wyraził zgodę na wykorzystywanie kamery,
+		
+		\item \textit{SETTINGS\_QUESTION\_EMOJI} -- informacja czy użytkownik wyraził zgodę na odpytywanie o nastrój z wykorzystaniem aktywności z emotikonami emocji,
+		
+		\item \textit{SETTINGS\_QUESTION\_COLOR} -- informacja czy użytkownik wyraził zgodę na odpytywanie o nastrój z wykorzystaniem aktywności z paletą kolorów,
+		
+		\item \textit{SETTINGS\_PHOTO\_NOTIFICATION} -- informacja czy użytkownik życzy sobie pokazywać przypomnienie o fakcie, że uruchomione jest skanowanie nastroju z wykorzystaniem kamery telefonu.
+	\end{itemize}
+\end{itemize}
+
+%---------------------------------------------------------------------------
+
+\section{Pakiet \textit{HowAreYou}}
+\label{sec:pakietHowAreYou}
+
+
+\subsection{Plugin \textit{AWARE}}
+
+
+\subsection{Dialog z użytkownikiem}
+
+\subsection{Pakiet \textit{photo}}
+
+
+\subsection{Menu ustawień}
