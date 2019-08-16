@@ -3,10 +3,10 @@
 
 %---------------------------------------------------------------------------
 
-\section{Zarys architektury}
-\label{sec:zarysArchitektury}
+\section{Wprowadzenie do architektury}
+\label{sec:wprowadzenieDoArchitektury}
 
-Trzon rozwiązania stanowi plugin \textit{HowAreYou}. Plugin działa w ramach frameworka AWARE. Do wykorzystywania pluginu konieczna jest więc aplikacja kliencka \textit{AWARE}. Ponadto wewnątrz pluginu wkompilowana jest również biblioteka rdzeniowa \textit{AWARE-core}. Sam plugin działa więc jako niezależna aplikacja i jako osobna instancja \textit{AWARE}. Aplikacja kliencka służy jedynie do konfiguracji rozszerzenia.
+Trzon rozwiązania stanowi plugin \textit{HowAreYou}. Plugin działa w ramach frameworka \textit{AWARE}. Do wykorzystywania pluginu konieczna jest więc aplikacja kliencka \textit{AWARE}. Ponadto wewnątrz pluginu wkompilowana jest również biblioteka rdzeniowa \textit{AWARE-core}. Sam plugin działa więc jako niezależna aplikacja i jako osobna instancja \textit{AWARE}. Aplikacja kliencka służy jedynie do konfiguracji rozszerzenia.
 
 \begin{figure}[H]
 	\centering
@@ -14,7 +14,7 @@ Trzon rozwiązania stanowi plugin \textit{HowAreYou}. Plugin działa w ramach fr
 	\caption{Schemat przedstawiający ogólną architekturę rozwiązania.}
 \end{figure}
 
-Wewnątrz pluginu wkompilowana jest również biblioteka silnika wnioskującego \textit{HeaRTDroid}. Zawarty wewnątrz pluginy pakiet \textit{agh.heart} (\textit{HeaRT-AWARE}) stanowi proxy pomiędzy zasadniczą częścią aplikacji a samym silnikiem. Plugin zawiera też kod \textit{XTT2} modeli wnioskujących dla silnika oraz implementuje rozwiązania, dzięki którym może komunikować się z użytkownikiem, gromadzić dane i przesyłać te dane do wspólnej bazy. 
+Wewnątrz pluginu wkompilowana jest również biblioteka silnika wnioskującego \textit{HeaRTDroid}. Dołączony pakiet \textit{agh.heart} (\textit{HeaRT-AWARE}) stanowi proxy pomiędzy zasadniczą częścią aplikacji a samym silnikiem. Plugin zawiera też kod \textit{XTT2} modeli wnioskujących dla silnika oraz implementuje rozwiązania, dzięki którym może komunikować się z użytkownikiem, gromadzić dane i przesyłać te dane do wspólnej bazy. 
 
 Powyższy schemat prezentuje najważniejsze składowe rozwiązania i zależności między nimi. Poza opisanymi tutaj elementami użytkownik ma do dyspozycji jeszcze aktywność ustawień, gdzie można konfigurować działanie oraz monitorować stan aplikacji.
 
