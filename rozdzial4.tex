@@ -335,11 +335,25 @@ Ostanim z elementów, na które warto zwrócić uwagę jest ContentProvider. Jeg
 
 \subsection{Dialog z użytkownikiem}
 
-TODO
-Question\_Emoji
-Question\_Color
-https://github.com/QuadFlask/colorpicker
-SlidableActivity https://github.com/r0adkll/Slidr
+Najważniejszą metodą mediacji wiedzy w niniejszej pracy jest pytanie w prost o emocje. Takie zapytanie daje nam największą pewność, co do tego co czuje użytkownik aplikacji. Niestety nadużywane może okazać się irytujące stąd aby je udoskonalić dołączono stosowanie silników wnioskujących, aby pytać możliwie w jak najlepszych momentach. 
+
+Samo odpytywanie realizowane jest poprzez uruchomienie aktywności Question\_Emoji. Na widok aktywności składa się 6 przycisków - każdy z nich zrealizowany poprzez połączenie emotikony (grafiki dostarczanej na wolnej licencji przez Google) oraz podpisu. Użytkownik może przekazać, że jest szczęśliwy, podekscytowany, rozczulony, przestraszony, zdenerwowany lub smutny.
+
+Klasa Question\_Emoji dziedziczy po SlidableActivity -- funkcjonalności opartej na wolnej licencji Apache i udostępnionej społeczności przez stronę \url{https://github.com/r0adkll/Slidr}. Szybkie przesunięcie palcem w bok po ekranie pozwala odrzucić pytanie o emocje. W ten sposób można przekazać sygnał, że w danej chwili zapytanie jest niepożądane -- jest to tak zwana opcja "Nie teraz". Może się okazać szczególnie przydatna w przyszłości, jeżeli w grę wejdzie samodzielne odkrywanie reguł.
+
+Równocześnie z aktywnością uruchamia się zadanie asynchroniczne. W tle realizowane jest odliczanie 10 sekund. Jeżeli w tym czasie nie zostanie udzielona odpowiedź, aktywność znika po prostu z ekranu. Próba dialogu zostaje oczywiście odnotowana.
+
+Wybór opcji, czy to emocji, czy opcji "Nie Teraz", czy też wygaśnięcia timera jest przekazywany do ContentProvidera, a następnie zapisywany w bazie danych. Do Plugin Managera zostaje przesłana informacja, że zapytanie zostało zakończone.
+
+Dodatkową jawną metodą mediacji wiedzy jest pytanie o kolor. Bez zebrania dużej ilości danych ciężko przewidzieć jak odczytywać takie odpowiedzi. Odpowiedź z wykorzystaniem mapy kolorów można odnosić na przykład do niejawnej metody mediacji, jaką jest rozpoznanie emocji z wykorzystaniem kamery. Dopiero łącząc te wyniki, można wysnuć wnioski. Ta forma badania ma raczej format psychologiczny a nie inżynierski. 
+
+Pytanie o kolor jest zrealizowane w postaci aktywności Question\_Color. Czołowe miejsce w układzie tej aktywności zajmuje dwuwymiarowa mapa kolorów Color Picker -- funkcjonalność oparta na wolnej licencji Apache i udostępniona społeczności przez stronę \url{https://github.com/QuadFlask/colorpicker}. Poza mapą Color Picker dostarcza również pasek jasności koloru, z którego można skorzystać. 
+
+Dodatkowo na ekranie pojawiają się dwa przyciski. Pierwszym jest przycisk zatwierdzenia koloru. Jeżeli popatrzylibyśmy na wcześniej omówioną aktywność, nie zastosowano tam takiego rozwiązania. Przy wyborze koloru jest po prostu wiele różnych możliwości i na przykład przesunięcie po mapie może być wygodniejsze dla użytkownika, niż pojedyncze kliknięcie. Przycisk Anuluj działa tak jak szybkie przesunięcie palcem w bok.
+
+Sama opcja przesunięcia ("Nie teraz") omówiona wcześniej w tej sekcji jest również dostępna w tej aktywności. Podobnie jak funkcjonalność, która po 10 sekundach powoduje zniknięcie aktywności i powrót do wcześniejszego stanu. Dodatkowo wprowadzono też zadanie asynchroniczne, które uruchamia licznik po wybraniu palcem jakiegoś koloru. Po trzech sekundach bezruchu aplikacja uznaje ten kolor za wybrany i zatwierdza w ten sam sposób, jakby kliknięto przycisk Wybierz.
+
+Po zamknięciu aktywności trzy składowe RGB przekazywane są do ContentProvidera, a następnie trafiają do bazy danych SQLite. Podobnie jak wcześniej, do bazy trafia również informacja, czy pytanie zostało zignorowane lub odrzucone.
 
 
 \subsection{Pakiet \textit{photo}}
