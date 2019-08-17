@@ -33,10 +33,11 @@ Mediacja nie musi odbywać się z wykorzystaniem ekranu. Na rynku pojawiają si�
 \section{Niejawne metody mediacji wiedzy}
 \label{sec:niejawneMetodyMediacjiWiedzy}
 
+Drugą kategorią metod mediacji wiedzy są metody niejawne. De facto sprowdza się to do braku bezpośredniego uczestnictwa człowieka w przekazywaniu wiedzy. Oczywiście człowiek jest zaangażowany w proces na przykład poprzez wykonywanie różnych czynności, ale nie zostanie nigdy zapytany wprost. Podobnie jak pierwsza kategoria, ta druga również ma swoje wady i zalety. Do zalet można zaliczyć wygodę -- korzystanie z tych metod jest nieinwazyjne, nie ingeruje w codzienną egzystencję. Minusem jest oczywiście mniejsza skuteczność.
 
-Pieczonka 11 - drunk driving
-Pieczonka13-HumanActivityRecognition
-Nalepa - w grach
+Przykładem takiej mediacji może być praca \cite{zhang2011feature}, w której naukowcy podejmują próby rozpoznania aktywności człowieka wykorzystując czujniki multimodalne. Do przetworzenia danych wykorzystywane są algorytmy wyboru cech.
+
+Podobną metodą wykorzystali naukowcy w pracy \cite{dai2010mobile} wykorzystując stworzony przez siebie model matematyczny w celu określenia czy kierowca samochodu jest trzeźwy czy pijany.
 
 
 %---------------------------------------------------------------------------
@@ -44,7 +45,12 @@ Nalepa - w grach
 \section{Pozyskiwanie wiedzy o stanie emocjonalnym w systemach \textit{affective computing}}
 \label{sec:pozyskiwanieWiedzyOStanieEmocjonalnymWSystemachAffectiveComputing}
 
-Nalepa - w grach
-Computer teaching and learning systems - Picard
-HAY
-HAY photo + w przyszłości sensory
+\textit{Affective computing} jest paradygmatem zaproponowanym przez Rosalind Picard z Laboratorium Mediów MIT w 1997 roku\cite{picard1997affective}.
+
+Wykorzystuje on rezultaty inżynierii biomedycznej, psychologii i sztucznej inteligencji. Celem jest pozwolenie systemome komputerowym wykrywać, wykorzystywać, a nawet wyrażać emocje\cite{nalepa2017affective}.
+
+Przykładem pozyskiwania wiedzy może być gra wideo \textit{Bridge Scroll-runner} stworzona w ramach pracy \cite{nalepa2017affective}. Naukowcy rozszerzyli możliwości gry wykorzystując czujniki tętna, temperatury skóry oraz reakcji galwanicznej skóry.
+
+Rosaling Picard w swojej pionierskiej pracy \cite{picard1997affective} jako przykład podaje komputerowy system uczący gry na pianinie. Taki system mógłby być znacznie skuteczniejszy od klasycznego systemu dysponując możliwością wyczuwania zainteresowania, przyjemności i smutku.
+
+W niniejszej pracy zastosowano zarówno metody jawne jak i niejawne. W celu pozyskania wiedzy o stanie emocjonalnym zdecydowano się na wykorzystanie odpowiedzi użytkownika i automatycznego systemu. Odpowiedzi użytkownika mogą być realizowane wprost poprzez aktywność z listą emotikon i emocji do wyboru lub (bardziej psychologicznie) z wykorzystaniem palety kolorów. Automatyczny system wykorzystuje zewnętrzne API, które zwraca wartości wykrytych emocji na podstawie fotografii, która została wcześniej wykonana. W przyszłości możliwe jest rozszerzenie aplikacji o system uczący się rozpoznawać emocje z sensorów AWARE porównując duże ilości danych niezrozumiałych z sensorów z danymi otrzymanymi z wykorzystaniem jawnych i niejawnych metod mediacji wiedzy.
