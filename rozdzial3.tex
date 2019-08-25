@@ -179,6 +179,21 @@ Aby uruchomic aktywność ustawień, w aplikacji klienckiej \textit{AWARE} w men
 	
 	\item Włączenie/wyłączenie trybu synchronizacji danych tylko przez wifi. Ilość danych do zsynchronizowania może być naprawdę niemała, dlatego taka opcja może być szczególnie przydatna dla osób, które nie dysponują dużym pakietem zbędnych gigabajtów.
 	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.35\textwidth}
+			\centering
+			\includegraphics[scale=0.13]{rozdzial3/Ustawienia_uruchomienie.png}
+			\subcaption{\label{subfigure_a}}
+		\end{subfigure}
+		\begin{subfigure}{0.35\textwidth}
+			\centering
+			\includegraphics[scale=0.13]{rozdzial3/Ustawienia_cz1.png}
+			\subcaption{\label{subfigure_b}}
+		\end{subfigure}
+		\caption{ Przejście do menu ustawień z aplikacji klienckiej (a) oraz widok aktywności ustawień (b).}
+	\end{figure}
+	
 	\item Wybranie między modelem A (zaawansowany model HMR, \textit{patrz: rozdział 4}), a modelem B (wersja uproszczona modelu). Przy instalacji wersji A (\textit{patrz: dodatek A}), domyślnie wybrany jest model A, przy wersji B - model B.
 	
 	\item Uruchomienie trybu debugowego. W trybie debugowym na ekranie urządzenia wyświetlają się w formie wiadomości \textit{Toast} lub okna dialogowego dodatkowe informacje dotyczące działania algorytmów w tle. Na dłuższą metę użytkowanie telefonu z \textit{HowAreYou} w trybie debugowym może być bardzo irytujące i dlatego jest niezalecane.
@@ -192,40 +207,25 @@ Z poziomu menu ustawień możemy też obserwować działanie aplikacji. Możliwe
 	
 	\item Uruchomie logu aplikacji. Użytkownik może śledzić kolejne akcje tak, jakby to robił patrząc w konsolę \textit{Logcat}. Widok umożliwia śledzenie aplikacji bez \textit{ADB}. Log samodzielnie się nie odświeża.
 	
+	\begin{figure}[H]
+		\centering
+		\begin{subfigure}{0.35\textwidth}
+			\centering
+			\includegraphics[scale=0.13]{rozdzial3/Ustawienia_cz2.png}
+			\subcaption{\label{subfigure_a}}
+		\end{subfigure}
+		\begin{subfigure}{0.35\textwidth}
+			\centering
+			\includegraphics[scale=0.13]{rozdzial3/Ustawienia_logZWnioskowania.png}
+			\subcaption{\label{subfigure_b}}
+		\end{subfigure}
+		\caption{ Widok dalszej części aktywności ustawień (a) oraz log z ostatniego wnioskowania (b).}
+	\end{figure}
+	
 	\item Uruchomienie logu ostatnich akcji. Poza samą listą kolejnych akcji użytkownik ma do dyspozycji informację o znaku czasu ostatniej akcji każdego typu, o łącznej ilości akcji danego typu jaka została wykonana na urządzeniu, oraz o ilości akcji danego typu, która wykonała się w ciągu ostatnich 24 godzin.
 \end{itemize}
 
 Ostatnią z możliwości menu Ustawień jest opcja wymuszenia. Ręcznie można wymusić zapytanie o kolor, zapytanie o emocje, czy skanowanie emocji z wykorzystaniem kamery telefonu. Użytkownik może też wymusić synchronizację z zewnętrzną bazą danych. Mimo, że sama synchronizacja uruchamiana jest przez plugin regularnie, wzięto pod uwagę, że może pojawić się sytuacja, kiedy synchronizacja jest potrzebna natychmiast, na przykład podczas krótkiej chwili połączenia z siecią WiFi lub na zakończenie badania, aby nie stracić ostatnich wyników.
-
-\begin{figure}[H]
-	\centering
-	\begin{subfigure}{0.35\textwidth}
-		\centering
-		\includegraphics[scale=0.13]{rozdzial3/Ustawienia_uruchomienie.png}
-		\subcaption{\label{subfigure_a}}
-	\end{subfigure}
-	\begin{subfigure}{0.35\textwidth}
-		\centering
-		\includegraphics[scale=0.13]{rozdzial3/Ustawienia_cz1.png}
-		\subcaption{\label{subfigure_b}}
-	\end{subfigure}
-	\caption{ Przejście do menu ustawień z aplikacji klienckiej (a) oraz widok aktywności ustawień (b).}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\begin{subfigure}{0.35\textwidth}
-	\centering
-	\includegraphics[scale=0.13]{rozdzial3/Ustawienia_cz2.png}
-	\subcaption{\label{subfigure_a}}
-\end{subfigure}
-\begin{subfigure}{0.35\textwidth}
-	\centering
-	\includegraphics[scale=0.13]{rozdzial3/Ustawienia_logZWnioskowania.png}
-	\subcaption{\label{subfigure_b}}
-\end{subfigure}
-\caption{ Widok dalszej części aktywności ustawień (a) oraz log z ostatniego wnioskowania (b).}
-\end{figure}
 
 \begin{figure}[H]
 \centering
