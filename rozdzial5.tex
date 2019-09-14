@@ -1,2 +1,332 @@
 \chapter{Ewaluacja}
 \label{cha:ewaluacja}
+
+%---------------------------------------------------------------------------
+
+\section{Sposób przeprowadzenia badania}
+\label{sec:sposobPrzeprowadzeniaBadania}
+
+Badanie przeprowadzono na grupie mężczyzn i kobiet w wieku 22-27 lat uruchamiając na ich telefonach aplikację \textit{AWARE} wraz z pluginem \textit{HowAreYou}. Zadaniem osób badanych było korzystanie z telefonu tak, jak to czynią na co dzień. Należy jednak podkreślić, że uruchomiona w tle aplikacja przeprowadzała badanie nastroju wchodząc w interakcję z użytkownikiem poprzez pytanie o emocje, o kolor i wykonywanie fotografii.
+
+Dziewięciorgu uczestnikom zaproponowano korzystanie z zaawansowanej wersji aplikacji (wzbogaconej o inteligentne wnioskowanie w oparciu o większą liczbę tzw. \textit{callbacks}). W ich przypadku plugin połączony został ze \textit{study}, a zebrane dane zgromadzone zostały w bazie danych MySQL. W bazie nie zostały gromadzone fotografie, jedynie anonimowe dane o stanie emocjonalnyn i informacje, które były wykorzystywane przez silnik wnioskujący.
+
+Dla porównania kolejnym czworgu uczestnikom zapropono wykorzystanie wersji uproszczonej (pytającej o nastrój w regularnych odstępach).
+
+Następnie skonstruowano formularze kwestionariuszy użytkownika, także w dwóch wersjach. Co natralane, formularz dla osób z pierwszej grupy zawierał dodatkowe pytania, które pozwoliły ocenić działanie wersji rozszerzonej.
+
+Odpowiedzi mogły być udzielone na jednakowej, pięciopunktowej skali:
+\begin{itemize}
+	\item zdecydowanie się nie zgadzam, 
+	\item raczej się nie zgadzam,
+	\item nie mam zdania,
+	\item raczej się zgadzam,
+	\item zdecydowanie się zgadzam.
+\end{itemize}
+
+Każda z powyższych wartości miała przypisaną wartość całkowitą: od -2 do +2.
+
+Odpowiedzi na każde z pytań poddano prostej analizie statystycznej -- dla każdego obliczono wartość średnią, wariancję i medianę. Wyniki zaokrąglono matematycznie do dwóch miejsc po przecinku.
+
+\clearpage
+
+%---------------------------------------------------------------------------
+
+\section{Konstrukcja kwestionariuszy i ewaluacja wyników badania}
+\label{sec:konstrukcjaKwestionariuszyIEwaluacjaWynikowBadania}
+
+W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następujące pytania:
+
+\subsection{Czy system był wygodny w użyciu?}
+
+	\subsubsection{Cel pytania:}
+	
+	Celem pytania była ogólna ocena zachowania aplikacji.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: 2, 1, 2, 2, 2, 1, 1, 0, 2
+	
+	Wartość średnia: 1.44
+
+	Wariancja: 0.53
+
+	Mediana: 2.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Odpowiedzi poszczególnych uczestników: 0, 1, 2, 1
+	
+	Wartość średnia: 1.00
+	
+	Wariancja: 0.67
+	
+	Mediana: 1.00
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Statystycznie nieco bardziej z całokształtu zadowoleni byli użytkownicy wersji zaawansowanej, stanowiącej podstawę niniejszczego badania. Całokształt ogólnego zachowania aplikacji został oceniony przez użytkowników dobrze -- z medianą 2 dla wersji zaawansowanej.
+
+
+\subsection{Czy system pytał mnie o nastrój w nieodpowiednich momentach?}
+
+	\subsubsection{Cel pytania:}
+	
+	Odpytywanie użytkownika musiało być najbardziej uciążliwą czynnością. Wszystkie inne działania pluginu \textit{HowAreYou} były wykonywane w tle. Celem zaawansowanej wersji było zmniejszenie tej uciążliwości.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: -1, -2, 0, 1, -1, -1, 1, 2, 0
+	
+	Wartość średnia: -0.11
+	
+	Wariancja: 1.61
+	
+	Mediana: 0.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Odpowiedzi poszczególnych uczestników: 2, 1, 2, 1
+	
+	Wartość średnia: 1.50
+	
+	Wariancja: 0.33
+	
+	Mediana: 1.50
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Wyniki dla użytkowników podstawowej wersji aplikacji okazały się być bardzo zróżnicowane. Część badanych wskazała, że odpytywanie o nastrój im nie przeszkadzało. Pojawiły się też niestety głosy, że było jednak irytujące. Inaczej sytuacja wygląda, jeżeli chodzi o odpowiedzi osób, wykorzystujących wersję klasyczną (z regularnym odpytywaniem) -- tutaj wszyscy użytkownicy wskazali, że byli pytani w nieodpowiednich momentach. Dzięki wykorzystaniu silnika wnioskującego i sensorów udało się więc ograniczyć w znaczący sposób uciążliwość odpytywania użytkownika.
+	
+	
+	\subsection{Czy miałem wątpliwości jak odpowiadać na pytania o odczuwane przez siebie emocje?}
+	
+	\subsubsection{Cel pytania:}
+	
+	W tym pytaniu chodziło o sprawdzenie, jak użytkownicy odbierają wygląd i sposób działania aktywności z widokiem emotikon. Warto podkreślić, że widok emotikon został zachowany w sposób identyczny w~wersji B.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: -2, -1, -1, -1, 0, -2, -1, -2, -1
+	
+	Wartość średnia: -1.22
+	
+	Wariancja: 0.44
+	
+	Mediana: -1.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Odpowiedzi poszczególnych uczestników: 0, 1, 2, 1
+	
+	Wartość średnia: -1.00
+	
+	Wariancja: 0.67
+	
+	Mediana: -1.00
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Użytkownikom przypadło do gustu odpytywanie z wykorzystaniem widoku emotikon. Badani z obydwu grup wskazali w przeważającej większości, że nie mieli wątpliwości, jak odpowiadać na zadane pytania.
+	
+	
+	\subsection{Czy miałem wątpliwości jak odpowiadać na pytania systemu o kolor odpowiadający temu, jak się czuję?}
+	
+	\subsubsection{Cel pytania:}
+	
+	W tym pytaniu chodziło o sprawdzenie, jak użytkownicy odbierają wygląd i sposób działania aktywności z widokiem mapy kolorów. Pytanie nie zostało zadane użytkownikom wersji B.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: 2, -2, 1, 1, 2, -2, 1, 2, 0
+	
+	Wartość średnia: 0.56
+	
+	Wariancja: 2.53
+	
+	Mediana: 1.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Nie dotyczy.
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Zdecydowana większość użytkowników wskazała, że miała problem przy odpowiadaniu na pytania dotyczące koloru. Może to oznaczać, że pytanie ludzi o kolor nie jest dobrym pomysłem. Istanieje ryzyko, że część spośród udzielonych odpowiedzi mogła być losowa -- spowodowana prostym kliknięciem w ekran, aby ''pozbyć się'' uciążliwego pytania. Całkiem prawdopodobne, że potrzeba bardzo dużo danych, aby z wyników pytania o kolor wysnuć jakieś wnioski. Warto również podkreślić, że odpowiedzi znacznie różnią się miedzy sobą -- u części osób na przykład zdecydowanie wątpliwości się nie pojawiły.
+
+
+
+\subsection{Czy określił(a) bym siebie jako umysł ścisły (inżynierski, itp.)?}
+
+	\subsubsection{Cel pytania:}
+	
+	Pytanie zadano jako uzupełnienie poprzedniego. Chodziło o to, aby zdobyć chociaż namiastkę zrozumienia, jak charakter i osobowość człowieka wpływa na udzielane przez niego odpowiedzi. 
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników (w nawiasach przypomniano odpowiedzi poszczególnych uczestników na poprzednie pytanie): 1 (2), -2 (-2), 2 (1), 2 (1), 0 (2), -2 (-2), 2 (1), 2 (2), -1 (0)
+
+	Wartość średnia: 0.44
+	
+	Wariancja: 3.03
+	
+	Mediana: 1.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Nie dotyczy.
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Większość uczestników testu to inżynierowie. Prawdopodobnie naturalnie więc określili oni siebie w większości jako umysły ścisłe. W teście wzięli też udział ludzie o odmiennych zainteresowaniach -- na przykład studentka ASP czy studentka medycyny. Pojawiły się więc również odpowiedzi negatywne. Co kluczowe przy tym pytaniu, tak jak przypuszczano, pomimo małej próbki można dostrzec nieznaczną korelację -- osobom określającym siebie jako umysł ścisły większą trudność sprawiło odpowiadanie na pytania dotyczące kolorów.
+	
+	
+\subsection{Czy system NIE przeszkadzał mi w korzystaniu z telefonu?}
+	
+	\subsubsection{Cel pytania:}
+	
+	Jednym z celów rozszerzenia \textit{HowAreYou} było zmniejszenie uciążliwości odpytywania użytkownika, między innymi przez stworzenie prostego, intuicyjnego i jak najbardziej nieinwazyjnego interfejsu. Pytanie weryfikuje tę funkcjonalność.
+	
+	W podobnych ankietach często ludzie pomijają słowo nie, dlatego zostało ono dodatkowo wyróżnione.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: -1, -2, -2, 1, 0, 1, 2, -1, 1
+	
+	Wartość średnia: -0.11
+	
+	Wariancja: 2.11
+	
+	Mediana: 0.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Odpowiedzi poszczególnych uczestników: -2, 1, -1, 0
+	
+	Wartość średnia: -0.50
+	
+	Wariancja: 1.67
+	
+	Mediana: -0.50
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Zarówno niniejsze pytanie, jak i to o nieodpowiednich momentach, wskazują, że system owszem był delikatnie uciążliwy, bo każde przerywanie i zadawanie pytań jest uciążliwe. Z drugiej jednak strony generalnie oceny użytkowników są raczej wysokie, więc plugin w wersji zaawansowanej został przygotowany jako przyjazny dla użytkowników. Należy też odnotować, że system okazał się bardziej uciążliwy dla użytkowników wersji prostej.
+	
+	
+	
+\subsection{Czy system NIE zabierał mi zbyt dużo czasu?}
+	
+	\subsubsection{Cel pytania:}
+	
+	Jednym z celów rozszerzenia \textit{HowAreYou} było zmniejszenie uciążliwości odpytywania użytkownika, między innymi przez stworzenie prostego, intuicyjnego i jak najbardziej nieinwazyjnego interfejsu. Pytanie weryfikuje tę funkcjonalność.
+	
+	W podobnych ankietach często ludzie pomijają słowo nie, dlatego zostało ono dodatkowo wyróżnione.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: -2, -1, -1, 0, 1, -1, 1, 0, -1
+	
+	Wartość średnia: -0.44
+	
+	Wariancja: 1.03
+	
+	Mediana: -1.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Odpowiedzi poszczególnych uczestników: -1, 0, 1, -2
+	
+	Wartość średnia: -0.50
+	
+	Wariancja: 1.67
+	
+	Mediana: -0.50
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Pomimo tego, że w jednym z poprzednich pytań spora część użytkowników wskazała, że była pytana w nieodpowiednich momentach, czy też że system przeszkadzał im w korzystaniu z telefonu, w tej kwestii użytkownicy byli raczej zgodni -- w większości określili system jako nieczasochłonny.
+	
+	
+	
+\subsection{Czy skanowanie nastroju z wykorzystaniem kamery telefonu było dla mnie zauważalne?}
+	
+	\subsubsection{Cel pytania:}
+	
+	Celem analizowania nastroju poprzez wykonywanie fotografii było ograniczenie uciążliwości działania systemu poprzez przeniesienie części odpowiedzialności z jawnego odpytywania na niejawne skanowanie. W teorii -- skanowanie nie powinno być zauważalne dla użytkownika. Pytanie stworzono, aby tę hipotezę potwierdzić. Pytanie zadano tylko tym uczestnikom badania, którzy wykorzystywali funkcjonalność kamery w wersji rozszerzonej.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: -1, -2, 0, 0, -1, -2, -1, 1, -1
+	
+	Wartość średnia: -0.78
+	
+	Wariancja: 0.94
+	
+	Mediana: -1.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Nie dotyczy.
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Większość użytkowników wskazała, że podczas kilkudniowego badania wykorzystywanie kamery telefonu nie było dla nich zauważalne. 
+	
+	
+	
+\subsection{Czy skanowanie nastroju z wykorzystaniem kamery telefonu wpływało na moje codzienne zachowanie? Czy mogłoby być na dłuższą metę uciążliwe?}
+	
+	\subsubsection{Cel pytania:}
+	
+	Celem pytania było zbadanie, jak świadomość bycia fotografowanym wpływa na uczestnika badania. Chodziło także o zestawienie tego pytania z poprzednim -- o zauważalność skanowania.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: 1, 2, 1, 1, 0, 1, -1, -1, 1
+	
+	Wartość średnia: 0.56
+	
+	Wariancja: 1.03
+	
+	Mediana: 1.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Nie dotyczy.
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Pomimo, że w poprzednim pytaniu większość uczestników wskazała, że przy kilkudniowym badaniu samo badanie nastroju nie było dla nich zauważalne, to jednak miało ono wpływ na ich codzienne zachowanie. To naturalne -- każdy człowiek chroni swoją prywatność. Taka świadomość bycia podglądanym wymusza na nas pewne zmiany.
+	
+	
+\subsection{Czy system działał zgodnie z konfiguracją i z moimi oczekiwaniami?}
+	
+	\subsubsection{Cel pytania:}
+	
+	Celem pytania było sprawdzenie oceny działania systemu przez użytkowników, abstrahując od kwestii wygody czy uciążliwości. Chodziło o sprawdzenie niezawodności i ewentualnie możliwości konfiguracji systemu.
+	
+	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	
+	Odpowiedzi poszczególnych uczestników: 1, 2, 1, 0, 1, 2, 1, 1, 2
+	
+	Wartość średnia: 1.22
+	
+	Wariancja: 0.44
+	
+	Mediana: 1.00
+	
+	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
+	
+	Odpowiedzi poszczególnych uczestników: -1, 1, 0, 1
+	
+	Wartość średnia: 0.25
+	
+	Wariancja: 0.92
+	
+	Mediana: 0.50
+	
+	\subsubsection{Obserwacje i wnioski:}
+	
+	Działanie pluginu \textit{HowAreYou} zostało przez użytkowników ocenione dobrze. System zebrał same oceny pozytywne i neuralne dla wersji rozszerzonej i tylko jedną negatywną dla prostego odpytywania z wykorzystaniem widoku emotikon.
+	
+	
