@@ -3,14 +3,14 @@
 
 %---------------------------------------------------------------------------
 
-\section{Wprowadzenie do implementacji}
-\label{sec:wprowadzenieDoImplementacji}
+\section{Zestaw narzędzi i technologii}
+\label{sec:zestawNardzedziITechnologii}
 
-Telefon komórkowy jest urządzeniem, które na co dzień mamy przy sobie. Z tego względu już na najwcześniejszym etapie projektowania rozwiązania wybór padł właśnie na to urządzenie. Jeżeli chodzi o systemy operacyjne, zdecydowano się na system Android. Jego główną zaletą jest fakt, że pozwala deweloperom aplikacji na szeroki dostęp do opcji systemowych, sensorów, itp. Jest to również najpopularniejszy system operacyjny dla urządzeń mobilnych.
+Aplikacja została zaimplementowana z myślą o telefonie komórkowym z systemem operacyjnym Android. Najstarszą wersją systemu, jaką wspiera \textit{HowAreYou} jest Lollipop (minimalne SKD zostało ustawione na 22). 
 
 Wraz z~potrzebą akwizycji dużej ilości różnego rodzaju danych z~sensorów urządzenia mobilnego pojawiła się konieczność realizacji tej akwizycji. Zdecydowano się pominąć własną implementację tego mechanizmu wykorzystując szeroki wachlarz możliwości jaki daje jeden z~otwartoźródłowych frameworków. Ostatecznie wybór padł na framework \textit{AWARE}. Rozwiązanie realizujące różne metody mediacji wiedzy zostało więc stworzone jako plugin \textit{HowAreYou} - nieoficjalne rozszerzenie \textit{AWARE}.
 
-Implementacja pluginu została zrealizowana w~języku Java, rekomendowanym przez twórców frameworka \textit{AWARE}\cite{AwareFramework}. Najstarszą wersją systemu operacyjnego Android, jaką wspiera \textit{HowAreYuu} jest Lollipop (minimalne SKD zostało ustawione na 22). Środowiskiem wykorzystanym w~celu realizacji zadania było Android Studio. Do kontroli wersji wykorzystano narzędzie git, do przechowywania kodu źródłowego -- platformę github: \url{https://github.com/filipbiernat/HowAreYou_plugin}.
+Implementacja pluginu została zrealizowana w~języku Java, rekomendowanym przez twórców frameworka \textit{AWARE}\cite{AwareFramework}. Środowiskiem wykorzystanym w~celu realizacji zadania było Android Studio. Do kontroli wersji wykorzystano narzędzie git, do przechowywania kodu źródłowego -- platformę github: \url{https://github.com/filipbiernat/HowAreYou_plugin}.
 
 %---------------------------------------------------------------------------
 
@@ -29,11 +29,13 @@ Należy jeszcze podkreślić, że model HMR został architektonicznie oddzielony
 
 \subsection{Zaawansowany model wnioskujący}
 
-\subsubsection{Realizacja zaawansowanego modelu wnioskującego}
-
 Celem realizacji zaawansowanego modelu wnioskującego było opracowanie modelu, z~pomocą którego zostaną wybrane jak najlepszy moment i sposób na zapytanie użytkownika o jego samopoczucie. Możliwe jest zapytanie niejawne poprzez wykonanie i przetworzenie fotografii lub zapytanie jawne - o kolor lub bezpośrednio o emocje.
 
 W procesie wnioskowania brane są pod uwagę czynniki takie jak czas, który upłynął od ostatniego zapytania, korzystanie z~nawigacji samochodowej, wykonywanie połączenia telefonicznego, oglądanie filmów, czy wykonywanie ruchu. Uwzględniane są też wyniki analizy fotografii oraz wiedza, czy w~danej chwili użytkownik korzysta z~ekranu telefonu.
+
+W sekcji omówiono kolejno strukturę zaimplementowanego modelu oraz poszczególne elementy stworzonego rozwiązania -- tabele, na podstawie których silnik wnioskujący podejmuje decyzje.
+
+\subsubsection{Realizacja zaawansowanego modelu wnioskującego}
 
 Poniższe obrazy przedstawiają widok modelu HMR w~edytorze \textit{HWEd}. Model został skonstruowany jako zestaw tabel, które zależąc od informacji z~aplikacji oraz od siebie nawzajem realizują reguły decyzyjne. Decyzja z~jednej tabeli ma bezpośreni wpływ na działanie kolejnej. Ostatecznie zgodnie z~wynikiem z~ostatniej tabeli \textit{howareyouAction} plugin \textit{HowAreYou} podejmuje określoną akcję. W kolejnej części rozdziału omawiane zostają krok po kroku zasady działania poszczególnych tabel poniższego modelu.
 
@@ -161,10 +163,11 @@ Działanie systemu wnioskującego wykorzystującego zaawansowany model wnioskuj�
 
 \subsection{Uproszczony model wnioskujący}
 
+W celach badawczych został stworzony również model uproszczony. Dzięki niemu osoba przeprowadzająca badanie jest w~stanie porównać, jaki wpływ na odbieranie przez uczestnika uciążliwości badania ma złożoność samego modelu. Model prosty został stworzony w~kontraście do pierwszego modelu. Sam model wykorzystuje tylko 2 czynniki: wiedzę czy ekran jest urządzenia włączony oraz czas od ostatniego zapytania. Model symuluje prosty i toporny system odpytywania użytkownika. 
+
+W sekcji omówiono kolejno założenia i przyczyny powstania drugiego modelu oraz sposób w jaki został on skonstruowany.
 
 \subsubsection{Realizacja uproszczonego modelu wnioskującego}
-
-W celach badawczych został stworzony również model uproszczony. Dzięki niemu osoba przeprowadzająca badanie jest w~stanie porównać, jaki wpływ na odbieranie przez uczestnika uciążliwości badania ma złożoność samego modelu. Model prosty został stworzony w~kontraście do pierwszego modelu. Sam model wykorzystuje tylko 2 czynniki: wiedzę czy ekran jest urządzenia włączony oraz czas od ostatniego zapytania. Model  symuluje prosty i toporny system odpytywania użytkownika. 
 
 Zdecydowaną zaletą \textit{HowAreYou} jest fakt, iż w~celach porównawczych nie było niezbędne tworzenie dodatkowej aplikacji, która odpytywałaby użytkownika w~sposób uproszczony, ani nawet modyfikacja kodu źródłowego aplikacji. Jedyną potrzebną czynnością była zmiana samego modelu HMR. Model uproszczony można aktywować w~ustawieniach aplikacji. Można również zainstalować plugin \textit{HowAreYou} bezpośrednio z~modelem uproszczonym. Podczas pobierania pliku instalatora należy wybrać wersję B (\textit{patrz: dodatek A}).
 

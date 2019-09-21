@@ -3,16 +3,18 @@
 
 %---------------------------------------------------------------------------
 
-\section{Wprowadzenie do architektury}
-\label{sec:wprowadzenieDoArchitektury}
+\section{Cel pracy i ogólna struktura rozwiązania}
+\label{sec:celPracyIOgolnaStrukturaRozwiazania}
 
-Trzon rozwiązania stanowi plugin \textit{HowAreYou}. Plugin działa w~ramach frameworka \textit{AWARE}. Do wykorzystywania pluginu konieczna jest więc aplikacja kliencka \textit{AWARE}. Ponadto wewnątrz pluginu wkompilowana jest również biblioteka rdzeniowa \textit{AWARE-core}. Sam plugin działa więc jako niezależna aplikacja i jako osobna instancja \textit{AWARE}. Aplikacja kliencka służy jedynie do konfiguracji rozszerzenia.
+W ramach pracy przeprowadzona została analiza istniejących rozwiązań. Na bazie tej analizy opracowane zostało rozwiązanie pozwalające na odpytywanie użytkownika o stan emocjonalny w sposób możliwie nieintruzywny łącząc w sobie świadomość kontekstu (czyli czynników ,,ze świata'', które wpływają na uczestnika badania) oraz najbardziej obiecujące metody mediacji wiedzy. Na potrzeby pracy stworzona została aplikacja mobilna pozwalająca na uczynienie jawnej mediacji wiedzy możliwie nieintruzywną (poprzez wnioskowanie oparte na monitorowaniu czynników zewnętrznych) oraz na przeprowadzenie niejawnej mediacji (z wykorzystaniem aparatu fotograficznego telefonu).  
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.8]{rozdzial3/ArchitekturaSchemat.png}
 	\caption{Schemat przedstawiający ogólną architekturę rozwiązania.}
 \end{figure}
+
+Trzon rozwiązania stanowi plugin \textit{HowAreYou}. Plugin działa w~ramach frameworka \textit{AWARE}. Do wykorzystywania pluginu konieczna jest więc aplikacja kliencka \textit{AWARE}. Ponadto wewnątrz pluginu wkompilowana jest również biblioteka rdzeniowa \textit{AWARE-core}. Sam plugin działa więc jako niezależna aplikacja i jako osobna instancja \textit{AWARE}. Aplikacja kliencka służy jedynie do konfiguracji rozszerzenia.
 
 Wewnątrz pluginu wkompilowana jest również biblioteka silnika wnioskującego \textit{HeaRTDroid}. Dołączony pakiet \textit{agh.heart} (\textit{HeaRT-AWARE}) stanowi proxy pomiędzy zasadniczą częścią aplikacji a samym silnikiem. Plugin zawiera też kod \textit{XTT2} modeli wnioskujących dla silnika oraz implementuje rozwiązania, dzięki którym może komunikować się z~użytkownikiem, gromadzić dane i przesyłać te dane do wspólnej bazy. 
 
@@ -124,13 +126,11 @@ Twórcy rdzenia frameworka proponują, by komunikacja pomiędzy poszczególnymi 
 
 \subsection{Dialog z~użytkownikiem}
 
-Jednym z~najrzetelniejszych źródeł wiedzy o użytkowniku urządzenia mobilnego jest on sam. Dlaczegoby więc nie wykożystać tej wiedzy i nie zapytać go ,,Jak się czujesz?''. Należy tu jednak uważać, aby nie przekroczyć granicy, która jest bardzo cienka. Statystyczny Kowalski niemal natychmiast zrezygnuje z~naszego oprogramowania, jeżeli zacznie ono mu się naprzykrzać. Stąd konieczność pytania jedynie w~uzasadnionych przypadkach -- na przykład kiedy inne źródła danych kontekstowych wskażą, że nastrój właściciela telefonu uległ w~ostatnim czasie zmianie. W projekcie wykorzystany jest zestaw reguł do decydowania, kiedy należy pytać o emocje.
+W większości sytuacji jedynym źródłem wiedzy o użytkowniku urządzenia mobilnego jest on sam. Dlaczegoby więc nie wykożystać tej wiedzy i nie zapytać go ,,Jak się czujesz?''. Należy tu jednak uważać, aby nie przekroczyć granicy, która jest bardzo cienka. Statystyczny Kowalski niemal natychmiast zrezygnuje z~naszego oprogramowania, jeżeli zacznie ono mu się naprzykrzać. Stąd konieczność pytania jedynie w~uzasadnionych przypadkach -- na przykład kiedy inne źródła danych kontekstowych wskażą, że nastrój właściciela telefonu uległ w~ostatnim czasie zmianie. W projekcie wykorzystany jest zestaw reguł do decydowania, kiedy należy pytać o emocje.
 
 W pluginie zaimplementowano dwa sposoby odpytywania użytkownika o nastrój: oparty o \textit{emoji} i oparty o kolory. W obecnej realizacji właściciel telefonu komórkowego w~ustawieniach aplikacji ma możliwość wyboru: żadnego, jednego lub obu sposobów.
 
 W przypadku pytania o emocje zadaniem użytkownika po wyświetleniu ekranu jest kliknięcie odpowiedniej emotikony z~napisem. Jeżeli żadna ikona nie zostanie wybrana, ekran zniknie po kilku sekundach.
-
-Dodatkowo wprowadzono bardziej psychologiczne pytanie -- pytanie o kolory. W tym drugim przypadku zadaniem użytkownika po wyświetleniu ekranu jest wybór odpowiedniego koloru. W tym celu zaimplementowano mechanizm wyboru koloru. Jeżeli żaden kolor nie zostanie wybrany, ekran zniknie po kilku sekundach. Jeżeli zostanie wybrany, użytkownik może zatwierdzić wybór przyciskiem, zmienić wybór lub zaczekać - wówczas ekran zniknie i zostanie zapisana ostatnio wybrana odpowiedź.
 
 \begin{figure}[H]
 	\centering
@@ -146,6 +146,8 @@ Dodatkowo wprowadzono bardziej psychologiczne pytanie -- pytanie o kolory. W tym
 	\end{subfigure}
 	\caption{ Dialog z~użytkownikiem w~formie pytania o emocje (a) oraz pytania o kolory (b).}
 \end{figure}
+
+Dodatkowo wprowadzono bardziej psychologiczne pytanie -- pytanie o kolory. W tym drugim przypadku zadaniem użytkownika po wyświetleniu ekranu jest wybór odpowiedniego koloru. W tym celu zaimplementowano mechanizm wyboru koloru. Jeżeli żaden kolor nie zostanie wybrany, ekran zniknie po kilku sekundach. Jeżeli zostanie wybrany, użytkownik może zatwierdzić wybór przyciskiem, zmienić wybór lub zaczekać - wówczas ekran zniknie i zostanie zapisana ostatnio wybrana odpowiedź.
 
 
 \subsection{Pakiet \textit{photo}}
@@ -177,8 +179,6 @@ Aby uruchomić aktywność ustawień, w~aplikacji klienckiej \textit{AWARE} w~me
 	
 	\item włączenie/wyłączenie odpytywania użytkownika z~użyciem emotikon oraz kolorów. Odpytywanie można wyłączyć całkowicie. Można też zdecydować się na jedną z~dwóch dostępnych opcji.
 	
-	\item włączenie/wyłączenie trybu synchronizacji danych tylko przez wifi. Ilość danych do zsynchronizowania może być naprawdę niemała, dlatego została zaprojektowana taka opcja z~myślą o osobach, które nie dysponują dużym pakietem zbędnych gigabajtów.
-	
 	\begin{figure}[H]
 		\centering
 		\begin{subfigure}{0.35\textwidth}
@@ -193,6 +193,8 @@ Aby uruchomić aktywność ustawień, w~aplikacji klienckiej \textit{AWARE} w~me
 		\end{subfigure}
 		\caption{ Przejście do menu ustawień z~aplikacji klienckiej (a) oraz widok aktywności ustawień (b).}
 	\end{figure}
+	
+	\item włączenie/wyłączenie trybu synchronizacji danych tylko przez wifi. Ilość danych do zsynchronizowania może być naprawdę niemała, dlatego została zaprojektowana taka opcja z~myślą o osobach, które nie dysponują dużym pakietem zbędnych gigabajtów.
 	
 	\item wybranie między modelem A (zaawansowany model HMR, \textit{patrz: rozdział 4}), a modelem B (wersja uproszczona modelu). Przy instalacji wersji A (\textit{patrz: dodatek A}), domyślnie wybrany jest model A, przy wersji B - model B.
 	

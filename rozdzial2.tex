@@ -6,11 +6,20 @@
 \section{Obszary zastosowań}
 \label{sec:obszaryZastosowan}
 
-Kluczowymi zastosowaniami mechanizmów mediacji wiedzy są te powiązane z~rozpoznawaniem emocji. Przede wszystkim chodzi tu o systemy rekomendacji, które najbardziej mogą skorzystać na dodatkowym rodzaju danych wejściowych, jakimi są emocje użytkownika. 
+Z mechanizmami mediacji wiedzy spotykamy się na co dzień -- od prostych, analogowych form zebrania tzw. \textit{feedbacku} od użytkownika do bardziej zaawansowanych systemów cyfrowych. Oto kilka przykładów zastosowań mediacji wiedzy:
 
-Wyobraźmy sobie system rekomendacji muzyki dużej aplikacji takiej jak Spotify. Dzięki dodatkowej wiedzy, mógłby zaproponować nam muzykę adekwatną do naszego nastroju. Podobnie sprawa ma się z~serwisami filmowymi takimi jak Netfix czy YouTube. Takie serwisy poza wyszukiwarką dysponują też stroną główną, na której przedstawiają użytkownikowi jak najlepsze propozycje. Wykorzystując informacje o naszych emocjach, te propozycje mogłyby być jeszcze lepsze. Kolejne możliwości pojawiają się w~obszarze zakupów. Platformy sprzedawcze takie jak Amazon czy Allegro mogłyby skorzystać z~efektów mediacji wiedzy proponując bardziej adekwatne produkty. Idąc dalej, przeglądarki internetowe takie jak Google czy DuckDuckGo mogłyby wyświetlać coraz lepsze propozycje.
+\begin{itemize}	
+	
+	\item Wiele instytucji publicznych (jak urzędy, szkoły, uczelnie) oraz prywatnych przedsiębiorstw gromadzi informacje od petentów czy klientów na przykład w formie dobrowolnych kwestionariuszy w celu podniesienia jakości świadczonych usług. W marketach popularność zyskują na przykład przyciski w formie emotikon, które klient może  nacisnąć przy wyjściu, przekazując czy jest zadowolony.
+	
+	\item Opinia osób jest szczególnie ważna w systemach tworzonych w sposób zorientowany na użytkownika (ang. \textit{user-centered design}). Na przykład w branży projektowania stron internetowych przy projektowaniu nowoczesnych, profesjonalnych rozwiązań, w fazie początkowych testów, a czasem również w fazie regularnego funkcjonowania udostępnia się użytkownikowi kwestionariusz w celu poprawy jakości.
+	
+	\item Część systemów rekomendacji zaczęła już wykorzystywać mediację wiedzy. To rozwiązanie staje się coraz popularniejsze na przykład pośród platform zawodowo-biznesowych wykorzystywanych do zbudowania sieci kontaktów i poszukiwania pracy.
+	
+	\item Omawiane tu mechanizmy znajdują zastosowanie również w medycynie. Przykładem może być wspomniana już w poprzednim rozdziale aplikacja zaprojektowana w ramach pracy \cite{hung2016predicting} stanowiąca próbę walki z depresją.
+	
+\end{itemize}
 
-Innym obszarem, gdzie mogłaby znaleźć zastosowanie wiedza zdobyta dzięki mechanizmom mediacji, mogłyby być gry i materiały edukacyjne. Emocje są niezwykle ważnym elementem przeżywania gier komputerowych. Znając reakcję gracza, system mógłby lepiej dostosować otaczający go świat.
 
 %---------------------------------------------------------------------------
 
@@ -19,9 +28,9 @@ Innym obszarem, gdzie mogłaby znaleźć zastosowanie wiedza zdobyta dzięki mec
 
 Pierwszą z~kategorii metod mediacji wiedzy są metody jawne. Oznacza to, że w~proces mediacji zaangażowany jest sam użytkownik. To rozwiązanie ma swoje wady i zalety. Z pewnością największą zaletą jest skuteczność rozwiązania -- nikt nie wie więcej o stanie emocji niż sam użytkownik. Z kolei główną wadą jest fakt, że takie badanie może okazać się uciążliwe i irytujące, a na dłuższą metę zbytnio ingerujące w~życie człowieka, czy wręcz niemożliwe.
 
-Przykładem jawnej metody może być praca Emilii Pieczonki realizowana na Katedrze Informatyki Stosowanej. W badaniach, jakie przeprowadziła, ''grupa użytkowników korzystajaca z~telefonu Android i aplikacji mobilnej, używała podczas codziennych czynności urządzenia sensorycznego na swoim nadgarstku i odpowiadała na pytania dotyczące ich samopoczucia'' \cite{EmiliaPieczonka}.
+Przykładem jawnej metody może być praca \cite{EmiliaPieczonka}. W badaniach, jakie przeprowadziła, ''grupa użytkowników korzystajaca z~telefonu Android i aplikacji mobilnej, używała podczas codziennych czynności urządzenia sensorycznego na swoim nadgarstku i odpowiadała na pytania dotyczące ich samopoczucia''.
 
-Warto również zwrócić uwagę na pracę Arkadiusza Lisa, również na Katedrze Informatyki Stosowanej. W tej pracy zostało wybrane w~oparciu o literaturę naukową kilka najbardziej obiecujących sposobów mediacji wiedzy. Następnie zaimplementowano zestaw widgetów, z~pomocą których użytkownik ''powinien być w~stanie subiektywnie określić stan emocjonalny (...), a następnie przekazać tą informację do systemu'' \cite{ArkadiuszLis}.
+Warto również zwrócić uwagę na pracę \cite{ArkadiuszLis}. Zostało w~niej wybrane w~oparciu o literaturę naukową kilka najbardziej obiecujących sposobów mediacji wiedzy. Następnie zaimplementowano zestaw widgetów, z~pomocą których użytkownik ''powinien być w~stanie subiektywnie określić stan emocjonalny (...), a następnie przekazać tą informację do systemu''.
 
 W pracy opisanej w~artykule \cite{hung2016predicting} naukowcy we współpracy z~psychiatrą stworzyli system, z~którego pomocą badany z~wykorzystaniem kolorowego suwaka może określić poziom swojego niepokoju czy gniewu. Badacze skupili się przede wszystkim nie na sensorach, ale na wzorcach korzystania z~telefonu udostępniach przez system operacyjnych takich jak wykonywanie połączeń, pisanie SMSów czy lokalizacja.
 
@@ -53,10 +62,24 @@ Przykładem pozyskiwania wiedzy może być gra wideo \textit{Bridge Scroll-runne
 
 Rosaling Picard w~swojej pionierskiej pracy \cite{picard1997affective} jako przykład podaje komputerowy system uczący gry na pianinie. Taki system mógłby być znacznie skuteczniejszy od klasycznego systemu dysponując możliwością wyczuwania zainteresowania, przyjemności i smutku.
 
+Wraz z rozwojem technologii metody pozyskiwania wiedzy o stanie emocjonalnym stają się coraz bardziej zaawansowane. Realizacja kolejnych technik jest dla twórców swego rodzaju wyzwaniem, ale stanowi okazję do przeprowadzenia coraz dokładniejszej analizy ludzkich emocji. Poniżej przedstawiono przegląd znanych metod pozyskiwanie wiedzy o stanie emocjonalnym w~systemach \textit{affective computing}:
+
+\begin{itemize}	
+	\item Najbardziej podstawowymi metodami są techniki analogowe. Kwestionariusz może być przeprowadzony w sposób całkowicie niewspomagany cyfrowo.
+	
+	\item Inną, nieco bardziej zaawansowaną metodą jest wykonywanie połączeń telefonicznych tak jak w~badaniu \cite{courvoisier2010psychometric}. W porównaniu do techniki analogowej jest to bardziej wymagające przede wszystkim logistycznie, a główną wadą może być znaczne obciążenie zarówno strony badającej jak i badanej.
+	
+	\item Odmienne podejście prezentują automatyczne techniki gromadzenia informacji o stanie emocjonalnym użytkownika. Mowa tu o systemach, które regularnie co jakiś czas przedstawiają osobie badanej pytanie i zapisują odpowiedź. W tym przypadku wyzwaniem jest wybór platformy i przede wszystkim stworzenie sytemu, ale zmiana podejścia daje duże zyski w postaci automatyzacji całego procesu.
+	
+	\item Bardziej zaawansowanym sposobem jest wybór zakresów godzinowych (czyli pór dnia) poprzez eksperta domenowego i tym samym ograniczenie odpytywania uczestnika badania tylko do określonych przedziałów. Technika mediacji o losowej porze, ale tylko wewnątrz ustalonego wcześniej zakresu została zastosowana m.in. w pracy \cite{bailon2019smartphone}. W tym przypadku zaletą jest nieznaczne obciążenie techniczne w stosunku do poprzedniej metody. Zmiana w postaci zawężenia okresów odpytywania niewielkim kosztem sprawia, że system jest bardziej przyjazny dla użytkownika.
+	
+	\item Ostatnią z przytoczonych tutaj metod jest odpytywanie użytkownika w czasie rzeczywistym w~oparciu o wnioskowanie na podstawie danych z otoczenia. System, który jest świadomy ,,kontekstu'' (ang. \textit{context-aware system}) jest w stanie zminimalizować uciążliwość dla użytkownika odpytując na przykład tylko w momentach, kiedy nie jest pewny stanu emocjonalnego (bo na przykład może go zbadać również w sposób niejawny), albo zaobserwował znaczącą zmianę jednego z czynników otoczenia. Właśnie taka zaawansowana aplikacja stworzona zostanie w ramach niniejszej pracy.
+\end{itemize}
+	
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{rozdzial2/ModelEkmana.png}
 	\caption{Koło podstawowych emocji (szczęście, podekscytowanie, rozczulenie, strach, gniew i smutek) i ich mimicznych ekspresji.}
 \end{figure}
 
-W niniejszej pracy zastosowano zarówno metody jawne jak i niejawne. W celu pozyskania wiedzy o stanie emocjonalnym zdecydowano się na syntezę odpowiedzi użytkownika i działania automatycznego systemu. Odpowiedzi użytkownika mogą być realizowane wprost poprzez aktywność z~listą emocji (jak na powyższym diagramie) i emotikon do wyboru lub (bardziej psychologicznie) z~wykorzystaniem palety kolorów. Automatyczny system wykorzystuje zewnętrzne API, które zwraca wartości wykrytych emocji na podstawie fotografii, która została wcześniej wykonana. W przyszłości możliwe jest rozszerzenie aplikacji o system uczący się rozpoznawać emocje z~sensorów AWARE porównując duże ilości danych niezrozumiałych z~sensorów z~danymi otrzymanymi z~wykorzystaniem jawnych i niejawnych metod mediacji wiedzy.
+W pracy zastosowano zarówno metody jawne jak i niejawne. W celu pozyskania wiedzy o stanie emocjonalnym zdecydowano się na syntezę odpowiedzi użytkownika i działania automatycznego systemu. Odpowiedzi użytkownika mogą być realizowane wprost poprzez aktywność z~listą emocji (jak na powyższym diagramie) i emotikon do wyboru lub (bardziej psychologicznie) z~wykorzystaniem palety kolorów. Automatyczny system wykorzystuje zewnętrzne API, które zwraca wartości wykrytych emocji na podstawie fotografii, która została wcześniej wykonana. W przyszłości możliwe jest rozszerzenie aplikacji o system uczący się rozpoznawać emocje z~sensorów AWARE porównując duże ilości danych niezrozumiałych z~sensorów z~danymi otrzymanymi z~wykorzystaniem jawnych i niejawnych metod mediacji wiedzy.

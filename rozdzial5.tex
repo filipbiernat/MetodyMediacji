@@ -3,6 +3,19 @@
 
 %---------------------------------------------------------------------------
 
+\section{Na czym polega ewaluacja?}
+\label{sec:naCzymPolegaEwaluacja}
+
+Kolejnym etapem, po zaprojektowaniu i zaimplementowaniu aplikacji była ewaluacja zapopononowanego rozwiązania, czyli zebranie opinii o wartości działania programu poprzez przeprowadzenie badania wśród użytkowników. 
+
+Należy przypomnieć, że celem pracy było zaprojektowanie, implementacja i ewaluacja mechanizmu pozyskiwania wiedzy o  stanie emocjonalnym użytkownika w systemach \textit{affective computing}. Na potrzeby pracy zaprojektowana i zaimplementowana została aplikacja mobilna pozwalająca na uczynienie jawnej mediacji wiedzy możliwie nieintruzywną (poprzez wnioskowanie oparte na monitorowaniu czynników zewnętrznych) oraz na przeprowadzenie niejawnej mediacji (z wykorzystaniem aparatu fotograficznego telefonu). 
+
+Ewaluację przeprowadzono w formie badania. Zebrano grupę osób, po czym na ich telefonach komórkowych zainstalowano aplikację wykorzystującą różne metody mediacji wiedzy. Po zakończeniu kilkudniowego etapu 
+testowania aplikacji, każdy z uczestników otrzymał listę pytań, na które należało udzielić odpowiedzi. Pytania (opisane w sekcji trzeciej niniejszego rozdziału) skostruowano w ten sposób, aby potwierdzić 
+założenia pracy i obserwacje wysnute podczas etapów projektowania i implementacji. Jeżeli odpowiedzi na pytania potwierdzą te hipotezy, będzie to oznaczało, że rozwiązanie w formie aplikacji mobilnej \textit{HowAreYou} spełnia swoje podstawowe zadania.
+
+%---------------------------------------------------------------------------
+
 \section{Sposób przeprowadzenia badania}
 \label{sec:sposobPrzeprowadzeniaBadania}
 
@@ -27,7 +40,7 @@ Każda z powyższych wartości miała przypisaną wartość całkowitą: od -2 d
 
 Odpowiedzi na każde z pytań poddano prostej analizie statystycznej -- dla każdego obliczono wartość średnią, wariancję i medianę. Wyniki zaokrąglono matematycznie do dwóch miejsc po przecinku.
 
-\clearpage
+Dla każdego z pytań dane przedstawiono na wykresie pudełkowym (ang. boxplot). Na płaszczyźnie umieszczono niebieski prostokąt, którego dolny bok jest wyznaczony przez pierwszy kwartyl, a prawy bok przez trzeci kwartyl. Dodatkowe ,,wąsy'' poza prostokątem wskazują najmniejszą i największą wartość w zbiorze. Czerwona pionowa linia wewnątrz prostokąta określa wartość mediany.
 
 %---------------------------------------------------------------------------
 
@@ -41,26 +54,40 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	\subsubsection{Cel pytania:}
 	
 	Celem pytania była ogólna ocena zachowania aplikacji.
+	\clearpage
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: 2, 1, 2, 2, 2, 1, 1, 0, 2
-	
-	Wartość średnia: 1.44
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 1 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			                                      & 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & 2 & 1 & 2 & 2 & 2 & 1 & 1 & 0 & 2 
+			                                      & 0 & 1 & 2 & 1     \\ \hline
+		\end{tabular}
+	\end{table}
 
-	Wariancja: 0.53
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 1 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & 1.44         & 1.00        \\ \hline
+			Wariancja       & 0.53         & 0.67        \\ \hline
+			Mediana         & 2.00         & 1.00        \\ \hline
+		\end{tabular}
+	\end{table}
 
-	Mediana: 2.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Odpowiedzi poszczególnych uczestników: 0, 1, 2, 1
-	
-	Wartość średnia: 1.00
-	
-	Wariancja: 0.67
-	
-	Mediana: 1.00
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja1.png}
+		\caption{Ewaluacja: pytanie 1 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	
@@ -73,25 +100,38 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	Odpytywanie użytkownika musiało być najbardziej uciążliwą czynnością. Wszystkie inne działania pluginu \textit{HowAreYou} były wykonywane w tle. Celem zaawansowanej wersji było zmniejszenie tej uciążliwości.
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: -1, -2, 0, 1, -1, -1, 1, 2, 0
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 2 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & -1 & -2 & 0 & 1 & -1 & -1 & 1 & 2 & 0
+			& 2 & 1 & 2 & 1     \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wartość średnia: -0.11
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 2 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & -0.11        & 1.50        \\ \hline
+			Wariancja       &  1.61        & 0.33        \\ \hline
+			Mediana         &  0.00        & 1.50        \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wariancja: 1.61
-	
-	Mediana: 0.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Odpowiedzi poszczególnych uczestników: 2, 1, 2, 1
-	
-	Wartość średnia: 1.50
-	
-	Wariancja: 0.33
-	
-	Mediana: 1.50
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja2.png}
+		\caption{Ewaluacja: pytanie 2 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	
@@ -104,25 +144,39 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	W tym pytaniu chodziło o sprawdzenie, jak użytkownicy odbierają wygląd i sposób działania aktywności z widokiem emotikon. Warto podkreślić, że widok emotikon został zachowany w sposób identyczny w~wersji B.
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: -2, -1, -1, -1, 0, -2, -1, -2, -1
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 3 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & -2 & -1 & -1 & -1 & 0 & -2 & -1 & -2 & -1
+			& -1 & 0 & -2 & -1  \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wartość średnia: -1.22
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 3 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & -1.22        & -1.00       \\ \hline
+			Wariancja       &  0.44        &  0.67       \\ \hline
+			Mediana         & -1.00        & -1.00       \\ \hline
+		\end{tabular}
+	\end{table}
+	\clearpage
 	
-	Wariancja: 0.44
-	
-	Mediana: -1.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Odpowiedzi poszczególnych uczestników: 0, 1, 2, 1
-	
-	Wartość średnia: -1.00
-	
-	Wariancja: 0.67
-	
-	Mediana: -1.00
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja3.png}
+		\caption{Ewaluacja: pytanie 3 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	
@@ -135,19 +189,38 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	W tym pytaniu chodziło o sprawdzenie, jak użytkownicy odbierają wygląd i sposób działania aktywności z widokiem mapy kolorów. Pytanie nie zostało zadane użytkownikom wersji B.
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: 2, -2, 1, 1, 2, -2, 1, 2, 0
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 4 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & 2 & -2 & 1 & 1 & 2 & -2 & 1 & 2 & 0
+			& --  & -- & -- & --     \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wartość średnia: 0.56
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 4 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & 0.56         & --          \\ \hline
+			Wariancja       & 2.53         & --          \\ \hline
+			Mediana         & 1.00         & --          \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wariancja: 2.53
-	
-	Mediana: 1.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Nie dotyczy.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja4.png}
+		\caption{Ewaluacja: pytanie 4 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	
@@ -161,19 +234,40 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	Pytanie zadano jako uzupełnienie poprzedniego. Chodziło o to, aby zdobyć chociaż namiastkę zrozumienia, jak charakter i osobowość człowieka wpływa na udzielane przez niego odpowiedzi. 
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników (w nawiasach przypomniano odpowiedzi poszczególnych uczestników na poprzednie pytanie): 1 (2), -2 (-2), 2 (1), 2 (1), 0 (2), -2 (-2), 2 (1), 2 (2), -1 (0)
-
-	Wartość średnia: 0.44
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 5 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & 1 & -2 & 2 & 2 & 0 & -2 & 2 & 2 & -1
+			& --  & -- & -- & --    \\ \hline
+			Odpowiedzi na poprzednie pytanie      & 2 & -2 & 1 & 1 & 2 & -2 & 1 & 2 & 0
+			& --  & -- & -- & --    \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wariancja: 3.03
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 5 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & 0.44         & --          \\ \hline
+			Wariancja       & 3.03         & --          \\ \hline
+			Mediana         & 1.00         & --          \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Mediana: 1.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Nie dotyczy.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja5.png}
+		\caption{Ewaluacja: pytanie 5 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	
@@ -188,25 +282,39 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	W podobnych ankietach ludzie często pomijają słowo nie, dlatego zostało ono dodatkowo wyróżnione.
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: -1, -2, -2, 1, 0, 1, 2, -1, 1
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 6 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & -1 & -2 & -2 & 1 & 0 & 1 & 2 & -1 & 1
+			& -2 & 1 & -1 & 0     \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wartość średnia: -0.11
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 6 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & -0.11        & -0.50       \\ \hline
+			Wariancja       &  2.11        &  1.67       \\ \hline
+			Mediana         &  0.00        & -0.50       \\ \hline
+		\end{tabular}
+	\end{table}
+	\clearpage
 	
-	Wariancja: 2.11
-	
-	Mediana: 0.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Odpowiedzi poszczególnych uczestników: -2, 1, -1, 0
-	
-	Wartość średnia: -0.50
-	
-	Wariancja: 1.67
-	
-	Mediana: -0.50
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja6.png}
+		\caption{Ewaluacja: pytanie 6 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	
@@ -222,25 +330,38 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	W podobnych ankietach często ludzie pomijają słowo nie, dlatego zostało ono dodatkowo wyróżnione.
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: -2, -1, -1, 0, 1, -1, 1, 0, -1
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 7 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & -2 & -1 & -1 & 0 & 1 & -1 & 1 & 0 & -1
+			& -1 & 0 & 1 & -2     \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wartość średnia: -0.44
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 7 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & -0.44        & -0.50       \\ \hline
+			Wariancja       &  1.03        &  1.67       \\ \hline
+			Mediana         & -1.00        & -0.50       \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wariancja: 1.03
-	
-	Mediana: -1.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Odpowiedzi poszczególnych uczestników: -1, 0, 1, -2
-	
-	Wartość średnia: -0.50
-	
-	Wariancja: 1.67
-	
-	Mediana: -0.50
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja7.png}
+		\caption{Ewaluacja: pytanie 7 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	
@@ -254,15 +375,39 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	Celem analizowania nastroju poprzez wykonywanie fotografii było ograniczenie uciążliwości działania systemu poprzez przeniesienie części odpowiedzialności z jawnego odpytywania na niejawne skanowanie. W teorii -- skanowanie nie powinno być zauważalne dla użytkownika. Pytanie dodano, aby tę hipotezę potwierdzić. Zadano je tylko tym uczestnikom badania, którzy wykorzystywali funkcjonalność kamery w wersji rozszerzonej.
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: -1, -2, 0, 0, -1, -2, -1, 1, -1
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 8 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & -1 & -2 & 0 & 0 & -1 & -2 & -1 & 1 & -1
+			& --  & -- & -- & -- \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wartość średnia: -0.78
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 8 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & -0.78        & --          \\ \hline
+			Wariancja       &  0.94        & --          \\ \hline
+			Mediana         & -1.00        & --          \\ \hline
+		\end{tabular}
+	\end{table}
+	\clearpage
 	
-	Wariancja: 0.94
-	
-	Mediana: -1.00
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja8.png}
+		\caption{Ewaluacja: pytanie 8 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
 	
@@ -280,19 +425,38 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	Celem pytania było zbadanie, jak świadomość bycia fotografowanym wpływa na uczestnika badania. Chodziło także o zestawienie tego pytania z poprzednim -- o zauważalność skanowania.
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: 1, 2, 1, 1, 0, 1, -1, -1, 1
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 9 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & 1 & 2 & 1 & 1 & 0 & 1 & -1 & -1 & 1
+			& -- & -- & -- & --     \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wartość średnia: 0.56
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 9 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & Uproszczona \\ \hline
+			Wartość średnia & 0.56         & --          \\ \hline
+			Wariancja       & 1.03         & --          \\ \hline
+			Mediana         & 1.00         & --          \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wariancja: 1.03
-	
-	Mediana: 1.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Nie dotyczy.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja9.png}
+		\caption{Ewaluacja: pytanie 9 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	
@@ -305,25 +469,37 @@ W celu przeprowadzenia badania, przygotowano kwestionariusz zawierający następ
 	
 	Celem pytania było sprawdzenie oceny działania systemu przez użytkowników, abstrahując od kwestii wygody czy uciążliwości. Chodziło o sprawdzenie niezawodności i ewentualnie możliwości konfiguracji systemu.
 	
-	\subsubsection{Uzyskane wyniki -- wersja zaawansowana:}
+	\subsubsection{Uzyskane wyniki:}
 	
-	Odpowiedzi poszczególnych uczestników: 1, 2, 1, 0, 1, 2, 1, 1, 2
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 10 -- uzyskane wyniki.}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+			\hline
+			Wersja &  \multicolumn{9}{c|}{Zaawansowana} & \multicolumn{4}{c|}{Uproszczona}\\ \hline
+			Identyfikator użytkownika             & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 
+			& 10 & 11 & 12 & 13 \\ \hline
+			Odpowiedzi poszczególnych uczestników & 1 & 2 & 1 & 0 & 1 & 2 & 1 & 1 & 2
+			& -1 & 1 & 0 & 1    \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wartość średnia: 1.22
+	\begin{table}[!h]
+		\caption{Ewaluacja: pytanie 10 -- prosta analiza statystyczna.}
+		\centering
+		\begin{tabular}{|c|c|c|}
+			\hline
+			Wersja          & Zaawansowana & 0.25        \\ \hline
+			Wariancja       & 0.44         & 0.92        \\ \hline
+			Mediana         & 1.00         & 0.50        \\ \hline
+		\end{tabular}
+	\end{table}
 	
-	Wariancja: 0.44
-	
-	Mediana: 1.00
-	
-	\subsubsection{Uzyskane wyniki -- wersja uproszczona:}
-	
-	Odpowiedzi poszczególnych uczestników: -1, 1, 0, 1
-	
-	Wartość średnia: 0.25
-	
-	Wariancja: 0.92
-	
-	Mediana: 0.50
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.8]{rozdzial5/Ewaluacja10.png}
+		\caption{Ewaluacja: pytanie 10 -- wykres pudełkowy.}
+	\end{figure}
 	
 	\subsubsection{Obserwacje i wnioski:}
 	

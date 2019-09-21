@@ -6,31 +6,39 @@
 \section{Cel pracy}
 \label{sec:celPracy}
 
-Celem pracy jest zaprojektowanie, implementacja i ewaluacja mechanizmu pozyskiwania wiedzy o stanie emocjonalnym użytkownika w systemach \textit{affective computing}. W szczególności w ramach pracy przeprowadzona zostanie analiza istniejących rozwiązań, na bazie którego opracowane zostanie rozwiązanie pozwalające na odpytywanie użytkownika o stan emocjonalny w sposób nieintruzywny.
+Celem pracy jest zaprojektowanie, implementacja i ewaluacja mechanizmu pozyskiwania wiedzy o  stanie emocjonalnym użytkownika w systemach \textit{affective computing}.
+
+W szczególności w~ramach pracy przeprowadzona zostanie analiza istniejących rozwiązań, na bazie których opracowane zostało rozwiązanie pozwalające na odpytywanie użytkownika o stan emocjonalny w sposób możliwie nieintruzywny.  Na potrzeby pracy zaprojektowana i zaimplementowana zostanie aplikacja mobilna pozwalająca na uczynienie jawnej mediacji wiedzy możliwie nieintruzywną (poprzez wnioskowanie oparte na monitorowaniu czynników zewnętrznych) oraz na przeprowadzenie niejawnej mediacji (z wykorzystaniem aparatu fotograficznego telefonu) wykorzystując znajomość tzw. kontekstu czyli informacji o otoczeniu użytkownika i dysponując możliwością dynamicznego reagowania na zmiany kontekstu w czasie rzeczywistym.. 
+
+Rozwiązanie zostanie poddane ewaluacji przeprowadzając badanie wśród grona użytkowników, którzy następnie zostaną przepytani, a wyniki kwestionariuszy zostaną opisane w niniejszej pracy.
+
 
 %---------------------------------------------------------------------------
 
 \section{Zastosowania wykrywania emocji}
 \label{sec:zastosowaniaWykrywaniaEmocji}
 
-Wyobraźmy sobie świat, w którym maszyna potrafi rozpoznawać emocje. Po ciężkim dniu wchodzimy do domu, a z zestawu stereo wybrzmiewa już muzyka adekwatna do naszego nastroju. Uruchamiamy grę wideo, a jej algorytm potrafi rozpoznać, jak reagujemy na kolejne wyzwania. Chcemy poszerzyć horyzonty -– inteligentny system e-learningowy prowadzi nas w dokładnie takim tempie, jakiego potrzebujemy. Kiedy jesteśmy przybici jesienną aurą, strona, która wyświetla nam reklamę, nie proponuje zakupu trampoliny, ale ciepłe bambosze USB. A gdy, nie daj Boże, przytrafia nam się nieszczęście, system awaryjny wzywa pomoc, której udaje się zdążyć na czas.
+Nasz świat powoli staje się światem, w którym maszyna potrafi rozpoznawać emocje. Wraz z rozwojem technologii pojawiają się i będą pojawiać kolejne systemy zdolne do wykrywania emocji użytkownika i wykorzystywania ich, aby lepiej spełniać swoje zadania:
 
-Ale w jaki sposób mamy przekazywać swoje emocje do aplikacji? Komputer ma mikrofon, klawiaturę i myszkę, które można wykorzystywać do przekazywania mu informacji. Problem w tym, że nie zawsze jesteśmy przy komputerze i że nie zawsze wystarczy mikrofon, klawiatura i myszka. Na szczęście jest urządzenie, które współczesny człowiek ma niemal zawsze przy sobie –- telefon komórkowy.
-
+\begin{itemize}	
+	\item Już teraz pojawiają się pierwsze gry komputerowe wykorzystujące informacje o stanie emocjonalnym użytkownika. Przykładem może być \cite{nalepa2017affective}. Dla aplikacji budujących alternatywny świat, zwłaszcza w coraz popularniejszej wirtualnej czy rozszerzonej rzeczywistości, wiedza o stanie emocjonalnym użytkownika byłaby bezcenna.
+	
+	\item Na rynku pojawiają się też pierwsze systemy e-learningowe wykorzystujące dodatkowe informacje afektywne do lepszego dopasowania tempa i materiału. Przykładem może być \cite{feidakis2012design}.
+	
+	\item Praca \cite{hung2016predicting} opisuje zastosowanie wykrywania emocji w medycynie. Takie systemy mogą znaleźć zastosowanie na przykład w walce z depresją, którą już teraz nazywa się chorobą cywilizacyjną dwudziestego pierwszego wieku.
+	
+	\item Pojawiają się także specjalne systemy afektywne zaprojektowane z myślą o osobach starszych. Oprogramowanie takie jak \cite{yu2014emotion} może wezwać karetkę czy inną pomoc, a także świadczyć inne udogodnienia reagując w czasie rzeczywistym na informacje o stanie emocjonalnym.
+	
+	\item Naturalnym przykładem zastosowania wykrywania emocji są systemy rekomendacyjne. Platformy multimedialne i streamingowe takie jak Netflix, Spotify, Twitch czy Youtube mogłyby wykorzystywać dodatkowe informacje, aby jeszcze lepiej wybierać muzykę czy filmy.
+	
+	\item Systemy rekomendacji mają także olbrzymie znaczenie w sprzedaży. Propozycje systemów sprzedających takich jak Amazon, Allegro czy Aliexpress dysponując w przyszłości informacjami o emocjach mogłyby być znacznie dokładniejsze.
+\end{itemize}
 
 %---------------------------------------------------------------------------
 
 \section{Gromadzenie danych}
 \label{sec:gromadzenieDanych}
 
-Niestety jego możliwości poznawcze są ograniczone. Telefon potrafi odczytać położenie za pomocą żyroskopu, czy tekst za pomocą dotykowej klawiatury. Idea \textit{HowAreYou} polega na tym, żeby te ograniczone sygnały połączyć i za ich pomocą odczytać nastrój użytkownika. Smartfon może też zrobić zdjęcie kamerą -- za pomocą fotografii już teraz można całkiem dokładnie określić nastrój użytkownika. Można też wprost zapytać użytkownika telefonu –- jeżeli nie nadużyjemy tego rozwiązania, stwarza ono szeroki wachlarz możliwości.
+Telefon komórkowy potrafi odczytać położenie za pomocą żyroskopu, czy tekst za pomocą dotykowej klawiatury. Idea \textit{HowAreYou} -- aplikacji stworzonej na potrzeby niniejsze pracy -- polega na tym, żeby te ograniczone sygnały połączyć i za ich pomocą odczytać nastrój użytkownika. Smartfon może też zrobić zdjęcie kamerą -- za pomocą fotografii już teraz można całkiem dokładnie określić nastrój użytkownika. Można też wprost zapytać użytkownika telefonu –- jeżeli nie nadużyjemy tego rozwiązania, stwarza ono szeroki wachlarz możliwości.
 
-Celem HowAreYou jest zbieranie dużej ilości danych -- zarówno zrozumiałych (czyli takich, które system potrafi odczytać), jak i niezrozumiałych. Dzięki bazie, która może powstać w przyszłości, przyszłe aplikacje będą mogły bezinwazyjnie odczytywać nastrój użytkownika.
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.7]{rozdzial1/gromadzenieDanych.png}
-	\caption{Schemat przedstawia jak \textit{HowAreYou} lub podobna aplikacja może wpłynąć na uczynienie niezrozumiałych obecnie czynników zrozumiałymi. W niniejszym badaniu nie został uwzględniony sposób wprowadzania tekstu. Podano go tutaj jako jedną z możliwości rozwinięcia pluginu \textit{HowAreYou} w przyszłości.}
-\end{figure}
-
-Projektowanie tej aplikacji jest zadaniem niezwykle delikatnym. Człowiek, co naturalne, lubi strzec swojej prywatności. Zrezygnuje, jeżeli będzie nieustannie niepokojony, albo poczuje, że traci kontrolę nad danymi, które trafiają do bazy. Konieczne jest zaprojektowanie takiego systemu, który da użytkownikowi możliwość wyboru i pewność, że treści, które udostępnia, są przez niego kontrolowane i całkowicie bezpieczne.
+Jednym z najważniejszych wyzwań związanych z projektowaniem aplikacji przetwarzajacych dane użytkwonika jest kwestia prywatności. Człowiek, co naturalne, lubi strzec swojej niezależności. Zrezygnuje z wykorzystywania przygotowanego rozwiązania, jeżeli będzie nieustannie niepokojony, albo poczuje, że traci kontrolę nad danymi, które trafiają do bazy. Konieczne jest zaprojektowanie takiego systemu, który da użytkownikowi możliwość wyboru i pewność, że treści, które udostępnia, są przez niego kontrolowane i całkowicie bezpieczne.
