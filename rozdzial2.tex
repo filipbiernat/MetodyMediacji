@@ -8,11 +8,18 @@
 
 Z mechanizmami mediacji wiedzy spotykamy się na co dzień -- od prostych, analogowych form zebrania tzw. \textit{feedbacku} od użytkownika do bardziej zaawansowanych systemów cyfrowych.
 
-Wiele instytucji publicznych (jak urzędy, szkoły, uczelnie) oraz prywatnych przedsiębiorstw gromadzi informacje od petentów czy klientów na przykład w formie dobrowolnych kwestionariuszy w~~celu podniesienia jakości świadczonych usług. W marketach popularność zyskują na przykład przyciski wformie emotikon, które klient może  nacisnąć przy wyjściu, przekazując czy jest zadowolony.
+Wiele instytucji publicznych (jak urzędy \cite{umkrakow}, szkoły, uczelnie \cite{wgigagh}) oraz prywatnych przedsiębiorstw gromadzi informacje od petentów czy klientów na przykład w formie dobrowolnych kwestionariuszy w~~celu podniesienia jakości świadczonych usług. W marketach popularność zyskują na przykład przyciski wformie emotikon, które klient może  nacisnąć przy wyjściu, przekazując czy jest zadowolony.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{rozdzial2/Biedronka.jpg}
+	\caption{Przykład prostego mechanizmu mediacji wiedzy w supermarketach sieci Biedronka. Użytkownik przekazuje informację o stanie afektywnym klikając w odpowiednią emotikonę.}
+\end{figure}
+
 	
-Opinia osób jest szczególnie ważna w systemach tworzonych w sposób zorientowany na użytkownika (ang. \textit{user-centered design}). Na przykład w branży projektowania stron internetowych przy projektowaniu nowoczesnych, profesjonalnych rozwiązań, w fazie początkowych testów, a czasem również w~fazie regularnego funkcjonowania udostępnia się użytkownikowi kwestionariusz w celu poprawy jakości.
+Opinia osób jest szczególnie ważna w systemach tworzonych w sposób zorientowany na użytkownika (ang. \textit{user-centered design}). Na przykład w branży projektowania stron internetowych przy projektowaniu nowoczesnych, profesjonalnych rozwiązań, w fazie początkowych testów, a czasem również w~fazie regularnego funkcjonowania udostępnia się użytkownikowi kwestionariusz w celu poprawy jakości czy nawet buduje z grona użytkowników zespoły scrumowe odpowiedzialne, za przekazanie swoich odczuć związanych z designem \cite{uxdesign}.
 	
-Część systemów rekomendacji zaczęła już wykorzystywać mediację wiedzy. To rozwiązanie staje się coraz popularniejsze na przykład pośród platform zawodowo-biznesowych wykorzystywanych do zbudowania sieci kontaktów i poszukiwania pracy.
+Część systemów rekomendacji zaczęła już wykorzystywać mediację wiedzy. To rozwiązanie staje się coraz popularniejsze na przykład pośród platform zawodowo-biznesowych wykorzystywanych do poszukiwania pracy \cite{careerexplorer}.
 	
 Omawiane tu mechanizmy znajdują zastosowanie również w medycynie. Przykładem może być wspomniana już w poprzednim rozdziale aplikacja zaprojektowana w ramach pracy \cite{hung2016predicting} stanowiąca próbę walki z depresją.
 
@@ -71,11 +78,12 @@ Wraz z rozwojem technologii metody pozyskiwania wiedzy o stanie emocjonalnym sta
 	
 	\item Ostatnią z przytoczonych tutaj metod jest odpytywanie użytkownika w czasie rzeczywistym w~oparciu o wnioskowanie na podstawie danych z otoczenia. System, który jest świadomy ,,kontekstu'' (ang. \textit{context-aware system}) jest w stanie zminimalizować uciążliwość dla użytkownika odpytując na przykład tylko w momentach, kiedy nie jest pewny stanu emocjonalnego (bo na przykład może go zbadać również w sposób niejawny), albo zaobserwował znaczącą zmianę jednego z czynników otoczenia. Właśnie taka zaawansowana aplikacja stworzona zostanie w ramach niniejszej pracy.
 \end{itemize}
-	
+
+W pracy zastosowano zarówno metody jawne jak i niejawne. W celu pozyskania wiedzy o stanie emocjonalnym zdecydowano się na syntezę odpowiedzi użytkownika i działania automatycznego systemu. Odpowiedzi użytkownika mogą być realizowane wprost poprzez aktywność z~listą emocji (jak na powyższym diagramie) i emotikon do wyboru lub (bardziej psychologicznie) z~wykorzystaniem palety kolorów. Automatyczny system wykorzystuje zewnętrzne API, które zwraca wartości wykrytych emocji na podstawie fotografii, która została wcześniej wykonana. W przyszłości możliwe jest rozszerzenie aplikacji o system uczący się rozpoznawać emocje z~sensorów AWARE porównując duże ilości danych niezrozumiałych z~sensorów z~danymi otrzymanymi z~wykorzystaniem jawnych i niejawnych metod mediacji wiedzy.
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=1]{rozdzial2/ModelEkmana.png}
 	\caption{Koło podstawowych emocji (szczęście, podekscytowanie, rozczulenie, strach, gniew i smutek) i ich mimicznych ekspresji.}
 \end{figure}
 
-W pracy zastosowano zarówno metody jawne jak i niejawne. W celu pozyskania wiedzy o stanie emocjonalnym zdecydowano się na syntezę odpowiedzi użytkownika i działania automatycznego systemu. Odpowiedzi użytkownika mogą być realizowane wprost poprzez aktywność z~listą emocji (jak na powyższym diagramie) i emotikon do wyboru lub (bardziej psychologicznie) z~wykorzystaniem palety kolorów. Automatyczny system wykorzystuje zewnętrzne API, które zwraca wartości wykrytych emocji na podstawie fotografii, która została wcześniej wykonana. W przyszłości możliwe jest rozszerzenie aplikacji o system uczący się rozpoznawać emocje z~sensorów AWARE porównując duże ilości danych niezrozumiałych z~sensorów z~danymi otrzymanymi z~wykorzystaniem jawnych i niejawnych metod mediacji wiedzy.
